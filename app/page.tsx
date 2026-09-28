@@ -49,7 +49,7 @@ export default function BerandaPage() {
           Mengenal Lebih Dekat Kelurahan Kumelembuay
         </h1>
         <p className="mx-auto mt-4 max-w-xl text-[#c1ecd4]">
-          Profil dan potensi wisata Kelurahan Kumelembuay — dari lereng Gunung
+          Profil dan potensi wisata Kelurahan Kumelembuay dari lereng Gunung
           Mahawu untuk warga dan pengunjung.
         </p>
         <Link
