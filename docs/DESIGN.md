@@ -50,12 +50,14 @@ Latar hijau sangat tua; 3 kolom di desktop, menumpuk di HP: identitas + lokasi, 
 Kartu putih, `rounded-2xl`, border `#C1C8C2`, angka besar hijau tua, label kecil. 3 kartu (tahun berdiri, luas wilayah, mata pencaharian); `grid-cols-1 sm:grid-cols-3`. Nilai kosong ditampilkan `—`.
 
 ### Kartu wisata (Potensi)
-Mengikuti referensi: **kartu berbasis gambar** dalam grid masonry.
-- Gambar memenuhi kartu, `rounded-2xl`, overlay gradasi gelap di bagian bawah agar teks terbaca.
-- Badge kategori (pil kecil, terracotta atau hijau tua) di kiri atas.
-- Nama wisata tebal di bagian bawah; satu-dua baris deskripsi singkat.
-- Ikon kaca pembesar kecil di kanan atas sebagai petunjuk bisa diklik.
-- Tinggi kartu boleh bervariasi (masonry). Implementasi sederhana: CSS columns (`columns-1 sm:columns-2 lg:columns-3`) dengan `break-inside-avoid`; tidak perlu library masonry.
+Tampilan: **CSS grid bergaya bento/mozaik**, pola berulang tiap 4 kartu (`index % 4`).
+- Gambar mengisi penuh kartu (`absolute inset-0`, `object-cover`), `rounded-2xl`, overlay gradasi gelap di bagian bawah agar teks terbaca.
+- Badge kategori (pil kecil, hijau tua) di kiri atas; ikon kaca pembesar di kanan atas.
+- Nama wisata tebal + deskripsi singkat (`line-clamp-2`) di bagian bawah.
+- **HP (default):** 1 kolom, tinggi kartu bergantian via aspect ratio: idx 0 `aspect-[4/3]`, idx 1 `aspect-[4/5]`, idx 2 `aspect-[4/3]`, idx 3 `aspect-[4/5]`.
+- **Tablet (sm):** 2 kolom, `sm:auto-rows-[200px]`. idx 0 & 3 → `col-span-2` (lebar penuh); idx 1 & 2 → satu kolom.
+- **Desktop (lg):** 3 kolom, `lg:auto-rows-[240px]`. idx 0 → `col-span-2` (lebar, kiri atas); idx 1 → `row-span-2` (tinggi, kolom kanan); idx 2 & 3 → 1×1 di bawah idx 0.
+- Jika item < 4: grid rata biasa tanpa pola span. Kelas span ditulis lengkap dalam lookup array agar Tailwind mengenalinya.
 - Hover: sedikit naik/berbayang. Seluruh kartu adalah `button` yang bisa difokus keyboard.
 
 ### Modal wisata (popup)
