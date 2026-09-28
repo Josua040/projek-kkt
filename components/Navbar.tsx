@@ -1,6 +1,8 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
+
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
@@ -23,9 +25,38 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 bg-[#1B4332] text-white">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
-        {/* Brand */}
-        <Link href="/" className="text-lg font-bold tracking-tight">
-          Kumelembuay
+        {/* Brand — tiga logo berdampingan */}
+        <Link
+          href="/"
+          className="flex items-center gap-3"
+          aria-label="Beranda — Kelurahan Kumelembuay"
+        >
+          {/* Logo Unsrat */}
+          <Image
+            src="/images/logo/logo-unsrat.png"
+            alt="Logo Universitas Sam Ratulangi"
+            width={50}
+            height={50}
+            className="h-18 w-18 object-contain"
+          />
+
+          {/* Logo KKT Kumelembuay */}
+          <Image
+            src="/images/logo/logo-kkt.png"
+            alt="Logo KKT Unsrat 149 Kumelembuay"
+            width={50}
+            height={50}
+            className="h-16 w-16 object-contain"
+          />
+
+          {/* Logo Tomohon */}
+          <Image
+            src="/images/logo/logo-tomohon.png"
+            alt="Logo Kota Tomohon"
+            width={50}
+            height={50}
+            className="h-12 w-12 object-contain"
+          />
         </Link>
 
         {/* Desktop menu */}
@@ -34,11 +65,10 @@ export default function Navbar() {
             <li key={link.href}>
               <Link
                 href={link.href}
-                className={`transition hover:text-[#D4A373] ${
-                  isActive(link.href)
-                    ? 'text-[#D4A373] underline underline-offset-4'
-                    : ''
-                }`}
+                className={`transition hover:text-[#D4A373] ${isActive(link.href)
+                  ? 'text-[#D4A373] underline underline-offset-4'
+                  : ''
+                  }`}
               >
                 {link.label}
               </Link>
@@ -92,11 +122,10 @@ export default function Navbar() {
                 <Link
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className={`block py-3 text-sm font-medium transition hover:text-[#D4A373] ${
-                    isActive(link.href)
-                      ? 'text-[#D4A373] underline underline-offset-4'
-                      : ''
-                  }`}
+                  className={`block py-3 text-sm font-medium transition hover:text-[#D4A373] ${isActive(link.href)
+                    ? 'text-[#D4A373] underline underline-offset-4'
+                    : ''
+                    }`}
                 >
                   {link.label}
                 </Link>
