@@ -36,6 +36,6 @@ export const site = {
     email: null as string | null,
   },
 
-  // Perkiraan koordinat; TODO: ganti dengan koordinat presisi dari kantor kelurahan
-  koordinat: [1.3306, 124.8722] as [number, number],
+  // Koordinat Kelurahan Kumelembuay (diverifikasi)
+  koordinat: [1.348327, 124.885225] as [number, number],
 };

@@ -92,6 +92,14 @@ export type Wisata = {
 
 // data/pemerintahan.ts
 export type Perangkat = { nama: string; jabatan: string; foto?: string };
+
+// data/tim-kkt.ts
+export type AnggotaKKT = { nama: string; prodi: string };
+export type TimKKT = {
+  periode: string | null;   // mis. "Agustus – September 2026"
+  fotoTim: string | null;   // path di /public/images/tim-kkt/
+  anggota: AnggotaKKT[];    // daftar nama + program studi
+};
 ```
 Nilai `null` berarti data belum ada → komponen menampilkan placeholder, bukan error.
 
@@ -103,13 +111,19 @@ Nilai `null` berarti data belum ada → komponen menampilkan placeholder, bukan 
 - **Deploy:** Vercel; deploy awal secepatnya agar bisa dites di HP sungguhan.
 
 ## 7. Status per 28 Sep 2026
-Sudah ada: project Next.js ter-scaffold, `layout.tsx` dengan Navbar/Footer, Beranda versi awal, komponen `VillageMap` (Leaflet), styling Tailwind berjalan.
-Perlu dirapikan (belum sesuai PRD ini):
-- Navbar masih memuat "Data Penduduk" dan "Galeri" dan **belum punya menu hamburger untuk HP**.
-- Footer masih memuat link Data Penduduk dan Galeri.
-- Beranda: statistik masih "Jumlah Penduduk/KK/Lingkungan"; harus diganti tahun berdiri, luas wilayah, mata pencaharian. Kartu jelajah harus mengarah ke Profil, Potensi, Kontak.
-- `app/globals.css`: pastikan latar krem terang (bukan mode gelap bawaan).
-- Route `/peta` hanya untuk percobaan; hapus setelah peta dipasang di Kontak.
+
+### Selesai (langkah 1–6)
+- ✅ Fondasi: Navbar mobile (hamburger), Footer, `globals.css` krem terang.
+- ✅ Folder `data/` dengan placeholder (`site.ts`, `wisata.ts`, `pemerintahan.ts`, `tim-kkt.ts`); Beranda memakai data tersebut.
+- ✅ Deploy awal ke Vercel.
+- ✅ Halaman Profil (`/profil`): sejarah, visi-misi, narasi Lurah, struktur pemerintahan, peta wilayah placeholder.
+- ✅ Halaman Potensi (`/potensi`): grid bento/mozaik, modal aksesibel, 4 placeholder wisata.
+- ✅ Halaman Kontak (`/kontak`): info kontak, peta Leaflet (dragging HP dimatikan), tombol Google Maps, section Tim KKT.
+- ✅ `VillageMap.jsx` dikonversi ke `VillageMap.tsx`; `MapWrapper.tsx` menangani `dynamic + ssr:false`.
+- ✅ Route percobaan `/peta` dihapus.
+
+### Menunggu data asli (langkah 7)
+Tahun berdiri · luas wilayah · mata pencaharian · sejarah · visi-misi kelurahan · narasi Lurah · struktur pemerintahan · nama/foto/deskripsi 4 wisata · gambar peta wilayah · alamat/telepon/email · foto tim KKT + nama/prodi anggota · koordinat presisi.
 
 ## 8. Urutan pengerjaan
 1. Fondasi: perbaiki Navbar (mobile), Footer, `globals.css`.

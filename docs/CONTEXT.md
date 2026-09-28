@@ -26,6 +26,7 @@ Tujuannya menampilkan profil kelurahan, potensi wisata, dan kontak, lalu diserah
 ## 4. Jebakan teknis yang sudah pernah terjadi
 - **Leaflet butuh `window`.** Komponen peta harus dimuat dengan `next/dynamic` dan `ssr: false`, dan pemanggilan `dynamic(..., { ssr: false })` itu harus berada di file yang memakai `'use client'`. Kalau tidak, muncul error "`ssr: false` is not allowed with `next/dynamic` in Server Components".
 - **Ikon marker default Leaflet sering rusak di Next.js.** Pakai `L.divIcon` dengan SVG inline (sudah dilakukan di `VillageMap`).
+- **Pembungkus peta Leaflet wajib `isolate`.** Tambahkan kelas `isolate` (atau `isolation: isolate`) pada div pembungkus paling luar komponen peta. Tanpanya, z-index internal Leaflet (tile layer, marker, popup) bisa bocor keluar stacking context dan menutupi elemen seperti navbar sticky.
 - Setelah menambah file/class Tailwind baru dan styling tidak muncul: hentikan dev server, hapus folder `.next`, jalankan ulang `npm run dev`.
 - Jangan ada dua file halaman di lokasi yang sama (mis. `page.tsx` dan `page.jsx` di `app/`).
 
