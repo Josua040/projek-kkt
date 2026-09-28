@@ -46,7 +46,7 @@ export default function Navbar() {
             alt="Logo KKT Unsrat 149 Kumelembuay"
             width={50}
             height={50}
-            className="h-16 w-16 object-contain"
+            className="h-17 w-17 -ml-2 object-contain"
           />
 
           {/* Logo Tomohon */}
