@@ -37,11 +37,15 @@ Kontras: teks di atas hijau tua harus putih/hijau muda; jangan hijau tua di atas
 
 ## 5. Komponen
 
+### TopBar
+Bar tipis paling atas (non-sticky), latar `#1B4332`, teks `text-xs` warna `#C1ECD4`. Tiga item dengan ikon SVG kecil: jam kantor, telepon (link `tel:`), alamat singkat. Di HP (di bawah `sm`) hanya jam dan telepon yang tampil; alamat disembunyikan (`hidden sm:flex`) agar tidak sesak. Nilai `null` ditampilkan "Menyusul".
+
 ### Navbar
-- Sticky di atas, latar hijau tua, teks putih; hover `#D4A373`.
-- **Desktop (`md` ke atas):** nama kelurahan di kiri, menu di kanan.
-- **HP:** nama kelurahan + **tombol hamburger**; menu terbuka sebagai panel di bawah navbar, link tersusun vertikal, menutup saat link dipilih. Perlu `'use client'` dan state buka/tutup. Tombol diberi `aria-label`, `aria-expanded`.
-- Menu: Beranda, Profil Kelurahan, Potensi Wisata, Kontak. Tandai halaman aktif.
+- **Latar putih** (`bg-white`), `border-b border-[#C1C8C2]`, `shadow-sm`. Sticky (`sticky top-0 z-50`).
+- Teks menu warna `#1B4332`; hover dan link aktif warna terracotta `#BC6C25` dengan `underline`.
+- **Desktop (`md` ke atas):** tiga logo di kiri (Unsrat · KKT · Tomohon), menu di kanan.
+- **HP:** tiga logo + tombol hamburger; menu terbuka sebagai panel putih di bawah navbar, link tersusun vertikal, menutup saat link dipilih. Ikon hamburger warna `#1B4332`.
+- Menu: Beranda, Profil Kelurahan, Potensi Wisata, Kontak. Halaman aktif ditandai warna terracotta + underline.
 
 ### Footer
 Latar hijau sangat tua; 3 kolom di desktop, menumpuk di HP: identitas + lokasi, navigasi, kontak. Baris hak cipta di bawah.

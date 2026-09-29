@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { site } from '@/data/site';
 
 const stats = [
@@ -41,23 +42,56 @@ export default function BerandaPage() {
   return (
     <main>
       {/* Hero */}
-      <section className="bg-[#1B4332] px-4 py-20 text-center text-white sm:px-6">
-        <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#a5d0b9]">
-          Kecamatan Tomohon Timur · Kota Tomohon
-        </p>
-        <h1 className="mx-auto max-w-2xl text-4xl font-extrabold leading-tight sm:text-5xl">
-          Mengenal Lebih Dekat Kelurahan Kumelembuay
-        </h1>
-        <p className="mx-auto mt-4 max-w-xl text-[#c1ecd4]">
-          Profil dan potensi wisata Kelurahan Kumelembuay dari lereng Gunung
-          Mahawu untuk warga dan pengunjung.
-        </p>
-        <Link
-          href="/profil"
-          className="mt-8 inline-block rounded-full bg-white px-7 py-3 text-sm font-semibold text-[#1B4332] transition hover:bg-[#D4A373] hover:text-white"
-        >
-          Lihat Profil Kelurahan
-        </Link>
+      <section
+        className="relative overflow-hidden bg-[#1B4332] text-white
+          min-h-[420px] flex items-center
+          px-4 py-20 sm:px-6 sm:min-h-[520px]"
+      >
+        {/* Foto latar — ditampilkan hanya jika heroImage ada */}
+        {site.heroImage && (
+          <>
+            <Image
+              src={site.heroImage}
+              alt="Foto pemandangan Kelurahan Kumelembuay"
+              fill
+              priority
+              className="object-cover object-center"
+              sizes="100vw"
+            />
+            {/* Lapis 1: gelap merata ringan di seluruh hero */}
+            <div className="absolute inset-0 bg-[#1B4332]/25" />
+            {/* Lapis 2: gradien dari kiri (gelap) ke kanan (transparan) */}
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  'linear-gradient(to right, rgba(27,67,50,0.97) 0%, rgba(27,67,50,0.85) 35%, rgba(27,67,50,0.40) 65%, transparent 100%)',
+              }}
+            />
+          </>
+        )}
+
+        {/* Konten teks — rata kiri, di atas overlay */}
+        <div className="relative z-10 w-full max-w-6xl mx-auto">
+          <div className="max-w-xl text-left">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#a5d0b9]">
+              Kecamatan Tomohon Timur · Kota Tomohon
+            </p>
+            <h1 className="text-4xl font-extrabold leading-tight sm:text-5xl">
+              Mengenal Lebih Dekat Kelurahan Kumelembuay
+            </h1>
+            <p className="mt-4 text-[#c1ecd4]">
+              Profil dan potensi wisata Kelurahan Kumelembuay dari lereng Gunung
+              Mahawu untuk warga dan pengunjung.
+            </p>
+            <Link
+              href="/profil"
+              className="mt-8 inline-block rounded-full bg-white px-7 py-3 text-sm font-semibold text-[#1B4332] transition hover:bg-[#D4A373] hover:text-white"
+            >
+              Lihat Profil Kelurahan
+            </Link>
+          </div>
+        </div>
       </section>
 
       {/* Statistik ringkas */}

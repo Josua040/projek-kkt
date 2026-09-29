@@ -2,9 +2,9 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
+import { site } from '@/data/site';
 
 const links = [
   { href: '/', label: 'Beranda' },
@@ -23,52 +23,65 @@ export default function Navbar() {
   }
 
   return (
-    <header className="sticky top-0 z-50 bg-[#1B4332] text-white">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
-        {/* Brand — tiga logo berdampingan */}
+    // Navbar sticky putih dengan border bawah tipis
+    <header className="sticky top-0 z-50 bg-white border-b border-[#C1C8C2] shadow-sm">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
+
+        {/* Brand — tiga logo dalam kontainer bordered */}
         <Link
           href="/"
-          className="flex items-center gap-3"
-          aria-label="Beranda — Kelurahan Kumelembuay"
+          className="flex items-center"
+          aria-label={`Beranda — ${site.nama}`}
         >
-          {/* Logo Unsrat */}
-          <Image
-            src="/images/logo/logo-unsrat.png"
-            alt="Logo Universitas Sam Ratulangi"
-            width={50}
-            height={50}
-            className="h-18 w-18 object-contain"
-          />
+          <div className="flex items-center gap-2 px-1 py-0.5">
 
-          {/* Logo KKT Kumelembuay */}
-          <Image
-            src="/images/logo/logo-kkt.png"
-            alt="Logo KKT Unsrat 149 Kumelembuay"
-            width={50}
-            height={50}
-            className="h-17 w-17 -ml-2 object-contain"
-          />
+            {/* Logo Unsrat — border biru/ungu sesuai warna logo Unsrat */}
+            <div className="flex items-center justify-center rounded-full border-2 border-[#3B3F8C] p-1">
+              <Image
+                src="/images/logo/logo-unsrat.png"
+                alt="Logo Universitas Sam Ratulangi"
+                width={50}
+                height={50}
+                className="h-7 w-auto object-contain sm:h-9"
+              />
+            </div>
 
-          {/* Logo Tomohon */}
-          <Image
-            src="/images/logo/logo-tomohon.png"
-            alt="Logo Kota Tomohon"
-            width={50}
-            height={50}
-            className="h-12 w-12 object-contain"
-          />
+            {/* Logo KKT Kumelembuay — border hijau hutan sesuai warna logo KKT, sedikit lebih besar */}
+            <div className="flex items-center justify-center rounded-full border-2 border-[#2D6A4F] p-1">
+              <Image
+                src="/images/logo/logo-kkt.png"
+                alt="Logo KKT Unsrat 149 Kumelembuay"
+                width={50}
+                height={50}
+                className="h-9 w-auto object-contain sm:h-11"
+              />
+            </div>
+
+            {/* Logo Tomohon — border merah tua sesuai warna logo Tomohon */}
+            <div className="flex items-center justify-center rounded-full border-2 border-[#7B1D1D] p-1">
+              <Image
+                src="/images/logo/logo-tomohon.png"
+                alt="Logo Kota Tomohon"
+                width={50}
+                height={50}
+                className="h-7 w-auto object-contain sm:h-9"
+              />
+            </div>
+
+          </div>
         </Link>
 
-        {/* Desktop menu */}
-        <ul className="hidden gap-6 text-sm font-medium md:flex">
+        {/* Desktop menu — aktif: pill solid hijau tua */}
+        <ul className="hidden gap-2 text-sm font-medium md:flex">
           {links.map((link) => (
             <li key={link.href}>
               <Link
                 href={link.href}
-                className={`transition hover:text-[#D4A373] ${isActive(link.href)
-                  ? 'text-[#D4A373] underline underline-offset-4'
-                  : ''
-                  }`}
+                className={
+                  isActive(link.href)
+                    ? 'rounded-full bg-[#1B4332] px-4 py-1.5 text-white transition-colors'
+                    : 'rounded-full px-4 py-1.5 text-[#1B4332] transition-colors hover:bg-[#1B4332]/10'
+                }
               >
                 {link.label}
               </Link>
@@ -76,9 +89,9 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Hamburger button (HP only) */}
+        {/* Hamburger button (HP only) — ikon hijau tua */}
         <button
-          className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded md:hidden"
+          className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded text-[#1B4332] md:hidden"
           aria-label="Buka menu navigasi"
           aria-expanded={isOpen}
           onClick={() => setIsOpen((prev) => !prev)}
@@ -113,19 +126,20 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile dropdown panel */}
+      {/* Mobile dropdown panel — latar putih, teks hijau tua */}
       {isOpen && (
-        <div className="border-t border-white/10 bg-[#1B4332] md:hidden">
-          <ul className="mx-auto max-w-6xl flex flex-col px-4 py-3 sm:px-6">
+        <div className="border-t border-[#C1C8C2] bg-white md:hidden">
+          <ul className="mx-auto flex max-w-6xl flex-col px-4 py-2 sm:px-6">
             {links.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className={`block py-3 text-sm font-medium transition hover:text-[#D4A373] ${isActive(link.href)
-                    ? 'text-[#D4A373] underline underline-offset-4'
-                    : ''
-                    }`}
+                  className={
+                    isActive(link.href)
+                      ? 'block rounded-full border border-[#1B4332] bg-[#1B4332] px-4 py-2 text-sm font-medium text-white transition-colors'
+                      : 'block rounded-full px-4 py-2 text-sm font-medium text-[#1B4332] transition-colors hover:bg-[#1B4332]/10'
+                  }
                 >
                   {link.label}
                 </Link>
