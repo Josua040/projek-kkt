@@ -1,14 +1,14 @@
 import Image from 'next/image';
-import type { Perangkat } from '@/data/pemerintahan';
+import type { PejabatInti } from '@/data/pemerintahan';
 
 interface PerangkatCardProps {
-  perangkat: Perangkat;
+  pejabat: PejabatInti;
   /** Menandai kartu Lurah agar tampil lebih menonjol */
   isLurah?: boolean;
 }
 
-export default function PerangkatCard({ perangkat, isLurah = false }: PerangkatCardProps) {
-  const { nama, jabatan, foto } = perangkat;
+export default function PerangkatCard({ pejabat, isLurah = false }: PerangkatCardProps) {
+  const { nama, jabatan, foto } = pejabat;
 
   return (
     <div

@@ -86,18 +86,20 @@ export default function KontakPage() {
 
             {/* ── Kartu info kontak ──────────────────────────────────── */}
             <div className="rounded-2xl border border-[#C1C8C2] bg-white p-6 shadow-sm space-y-4">
-              {/* Jalan */}
-              <div className="flex items-start gap-3">
-                <IconJalan />
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-widest text-[#BC6C25]">
-                    Jalan
-                  </p>
-                  <p className="mt-0.5 text-sm text-[#1C1C18]">
-                    {kontak.jalan ?? 'Data menyusul'}
-                  </p>
+              {/* Jalan (opsional jika tersedia) */}
+              {kontak.jalan && (
+                <div className="flex items-start gap-3">
+                  <IconJalan />
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-widest text-[#BC6C25]">
+                      Jalan
+                    </p>
+                    <p className="mt-0.5 text-sm text-[#1C1C18]">
+                      {kontak.jalan}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* Alamat lengkap */}
               <div className="flex items-start gap-3">
@@ -106,8 +108,8 @@ export default function KontakPage() {
                   <p className="text-xs font-semibold uppercase tracking-widest text-[#BC6C25]">
                     Alamat
                   </p>
-                  <p className="mt-0.5 text-sm text-[#1C1C18]">
-                    {kontak.alamat ?? 'Data menyusul'}
+                  <p className="mt-0.5 text-sm text-[#1C1C18] leading-relaxed">
+                    {kontak.alamat ? `${kontak.alamat}, Kode Pos ${kontak.kodePos}` : 'Data menyusul'}
                   </p>
                 </div>
               </div>
@@ -122,7 +124,7 @@ export default function KontakPage() {
                   {kontak.telepon ? (
                     <a
                       href={`tel:${kontak.telepon}`}
-                      className="mt-0.5 text-sm text-[#1B4332] underline hover:text-[#BC6C25] transition-colors"
+                      className="mt-0.5 block text-sm text-[#1B4332] underline hover:text-[#BC6C25] transition-colors"
                     >
                       {kontak.telepon}
                     </a>
@@ -142,7 +144,7 @@ export default function KontakPage() {
                   {kontak.email ? (
                     <a
                       href={`mailto:${kontak.email}`}
-                      className="mt-0.5 text-sm text-[#1B4332] underline hover:text-[#BC6C25] transition-colors break-all"
+                      className="mt-0.5 block text-sm text-[#1B4332] underline hover:text-[#BC6C25] transition-colors break-all"
                     >
                       {kontak.email}
                     </a>

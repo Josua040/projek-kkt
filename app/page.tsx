@@ -2,20 +2,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { site } from '@/data/site';
 
-const stats = [
-  {
-    label: 'Tahun Berdiri',
-    value: site.tahunBerdiri !== null ? String(site.tahunBerdiri) : '—',
-  },
-  {
-    label: 'Luas Wilayah',
-    value: site.luasWilayah ?? '—',
-  },
-  {
-    label: 'Mayoritas Mata Pencaharian',
-    value: site.mataPencaharian ?? '—',
-  },
-];
 
 const highlights = [
   {
@@ -36,9 +22,6 @@ const highlights = [
 ];
 
 export default function BerandaPage() {
-  const sambutan =
-    site.sambutanLurah ?? 'Sambutan Lurah akan segera ditambahkan.';
-
   return (
     <main>
       {/* Hero */}
@@ -47,29 +30,25 @@ export default function BerandaPage() {
           min-h-[420px] flex items-center
           px-4 py-20 sm:px-6 sm:min-h-[520px]"
       >
-        {/* Foto latar — ditampilkan hanya jika heroImage ada */}
-        {site.heroImage && (
-          <>
-            <Image
-              src={site.heroImage}
-              alt="Foto pemandangan Kelurahan Kumelembuay"
-              fill
-              priority
-              className="object-cover object-center"
-              sizes="100vw"
-            />
-            {/* Lapis 1: gelap merata ringan di seluruh hero */}
-            <div className="absolute inset-0 bg-[#1B4332]/25" />
-            {/* Lapis 2: gradien dari kiri (gelap) ke kanan (transparan) */}
-            <div
-              className="absolute inset-0"
-              style={{
-                background:
-                  'linear-gradient(to right, rgba(27,67,50,0.97) 0%, rgba(27,67,50,0.85) 35%, rgba(27,67,50,0.40) 65%, transparent 100%)',
-              }}
-            />
-          </>
-        )}
+        {/* Foto latar */}
+        <Image
+          src="/images/profil/hero.jpg"
+          alt="Foto pemandangan Kelurahan Kumelembuay"
+          fill
+          priority
+          className="object-cover object-center"
+          sizes="100vw"
+        />
+        {/* Lapis 1: gelap merata ringan di seluruh hero */}
+        <div className="absolute inset-0 bg-[#1B4332]/25" />
+        {/* Lapis 2: gradien dari kiri (gelap) ke kanan (transparan) */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'linear-gradient(to right, rgba(27,67,50,0.97) 0%, rgba(27,67,50,0.85) 35%, rgba(27,67,50,0.40) 65%, transparent 100%)',
+          }}
+        />
 
         {/* Konten teks — rata kiri, di atas overlay */}
         <div className="relative z-10 w-full max-w-6xl mx-auto">
@@ -94,17 +73,42 @@ export default function BerandaPage() {
         </div>
       </section>
 
-      {/* Statistik ringkas */}
-      <section className="mx-auto grid max-w-5xl grid-cols-1 gap-4 px-4 py-10 sm:grid-cols-3 sm:px-6">
-        {stats.map((s) => (
-          <div
-            key={s.label}
-            className="rounded-2xl border border-[#c1c8c2] bg-white p-5 text-center shadow-sm"
-          >
-            <p className="text-2xl font-extrabold text-[#1B4332]">{s.value}</p>
-            <p className="mt-1 text-xs text-[#414844]">{s.label}</p>
-          </div>
-        ))}
+      {/* Statistik ringkas — 4 kartu (grid-cols-2 sm:grid-cols-4) */}
+      <section className="mx-auto grid max-w-5xl grid-cols-2 gap-4 px-4 py-10 sm:grid-cols-4 sm:px-6">
+        {/* 1. Tahun Berdiri */}
+        <div className="flex flex-col justify-center rounded-2xl border border-[#c1c8c2] bg-white p-5 text-center shadow-sm">
+          <p className="text-sm sm:text-base font-extrabold text-[#1B4332] leading-tight">
+            {site.tahunDesa} · Kelurahan sejak {site.tahunKelurahan}
+          </p>
+          <p className="mt-2 text-xs text-[#414844]">Tahun Berdiri</p>
+        </div>
+
+        {/* 2. Luas Wilayah */}
+        <div className="flex flex-col justify-center rounded-2xl border border-[#c1c8c2] bg-white p-5 text-center shadow-sm">
+          <p className="text-xl sm:text-2xl font-extrabold text-[#1B4332] leading-tight">
+            {site.luasWilayah}
+          </p>
+          <p className="mt-2 text-xs text-[#414844]">Luas Wilayah</p>
+        </div>
+
+        {/* 3. Mayoritas Mata Pencaharian */}
+        <div className="flex flex-col justify-center rounded-2xl border border-[#c1c8c2] bg-white p-5 text-center shadow-sm">
+          <p className="text-xs sm:text-sm font-bold text-[#1B4332] leading-snug">
+            {site.mataPencaharian}
+          </p>
+          <p className="mt-2 text-xs text-[#414844]">Mayoritas Mata Pencaharian</p>
+        </div>
+
+        {/* 4. Jumlah Penduduk */}
+        <div className="flex flex-col justify-center rounded-2xl border border-[#c1c8c2] bg-white p-5 text-center shadow-sm">
+          <p className="text-xl sm:text-2xl font-extrabold text-[#1B4332] leading-tight">
+            {site.dataPenduduk.jumlahJiwa}
+          </p>
+          <p className="mt-1 text-xs font-semibold text-[#1B4332]">Jumlah Penduduk</p>
+          <p className="mt-1 text-[11px] leading-tight text-[#414844]">
+            {site.dataPenduduk.jumlahKK} KK · L {site.dataPenduduk.lakiLaki}, P {site.dataPenduduk.perempuan}
+          </p>
+        </div>
       </section>
 
       {/* Kartu jelajah */}
@@ -135,10 +139,10 @@ export default function BerandaPage() {
           <div className="h-28 w-28 shrink-0 rounded-full bg-[#c1c8c2]" />
           <div>
             <h3 className="text-lg font-bold text-[#1B4332]">Sambutan Lurah</h3>
-            <p className="mt-2 text-sm text-[#414844]">{sambutan}</p>
-            {site.sambutanLurah !== null && (
+            <p className="mt-2 text-sm text-[#414844] leading-relaxed">{site.sambutanLurah}</p>
+            {site.narasiLurah?.nama && (
               <p className="mt-3 text-sm font-semibold text-[#1B4332]">
-                — Lurah Kumelembuay
+                — {site.narasiLurah.nama}
               </p>
             )}
           </div>

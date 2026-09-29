@@ -3,8 +3,8 @@ import { site } from '@/data/site';
 // TopBar adalah server component — tidak perlu 'use client'
 export default function TopBar() {
   const jam = site.jamKantor ?? 'Menyusul';
-  const telp = site.teleponKantor ?? 'Menyusul';
-  const alamat = site.alamatSingkat ?? 'Menyusul';
+  const telp = site.kontak.telepon ?? 'Menyusul';
+  const alamat = site.kontak.alamat ?? 'Menyusul';
 
   return (
     <div className="bg-[#1B4332] text-white">
@@ -48,9 +48,9 @@ export default function TopBar() {
           >
             <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.54 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6.29 6.29l1.58-1.58a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.03z" />
           </svg>
-          {site.teleponKantor ? (
+          {site.kontak.telepon ? (
             <a
-              href={`tel:${site.teleponKantor}`}
+              href={`tel:${site.kontak.telepon}`}
               className="hover:text-[#D4A373] transition-colors"
             >
               {telp}

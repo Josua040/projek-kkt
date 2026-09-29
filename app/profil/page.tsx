@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { site } from '@/data/site';
-import { perangkat } from '@/data/pemerintahan';
+import { pejabatInti, lingkungan } from '@/data/pemerintahan';
 import PerangkatCard from '@/components/PerangkatCard';
 
 export const metadata: Metadata = {
@@ -78,27 +78,35 @@ export default function ProfilPage() {
           <SectionTitle>Visi dan Misi Kelurahan</SectionTitle>
           {site.visiMisiKelurahan ? (
             <div className="space-y-6">
-              {/* Visi */}
-              <div className="rounded-2xl border border-[#C1C8C2] bg-white p-5 shadow-sm">
+              {/* Visi sebagai kutipan */}
+              <blockquote className="rounded-2xl border-l-4 border-[#1B4332] bg-white p-6 shadow-sm">
                 <p className="text-xs font-semibold uppercase tracking-widest text-[#BC6C25] mb-2">
                   Visi
                 </p>
-                <p className="text-[#1C1C18] font-medium leading-relaxed text-sm sm:text-base">
-                  {site.visiMisiKelurahan.visi}
+                <p className="text-[#1C1C18] text-base sm:text-lg italic font-medium leading-relaxed">
+                  &ldquo;{site.visiMisiKelurahan.visi}&rdquo;
                 </p>
-              </div>
-              {/* Misi */}
-              <div className="rounded-2xl border border-[#C1C8C2] bg-white p-5 shadow-sm">
-                <p className="text-xs font-semibold uppercase tracking-widest text-[#BC6C25] mb-3">
+              </blockquote>
+
+              {/* Misi sebagai daftar 5 item */}
+              <div className="rounded-2xl border border-[#C1C8C2] bg-white p-6 shadow-sm">
+                <p className="text-xs font-semibold uppercase tracking-widest text-[#BC6C25] mb-4">
                   Misi
                 </p>
-                <ol className="list-decimal list-inside space-y-2">
+                <ol className="space-y-4">
                   {site.visiMisiKelurahan.misi.map((item, idx) => (
-                    <li
-                      key={idx}
-                      className="text-[#1C1C18] leading-relaxed text-sm sm:text-base"
-                    >
-                      {item}
+                    <li key={idx} className="flex items-start gap-3">
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#1B4332] text-xs font-bold text-white mt-0.5">
+                        {idx + 1}
+                      </span>
+                      <div>
+                        <p className="font-bold text-[#1B4332] text-sm sm:text-base">
+                          {item.judul}
+                        </p>
+                        <p className="mt-1 text-[#414844] text-sm leading-relaxed">
+                          {item.deskripsi}
+                        </p>
+                      </div>
                     </li>
                   ))}
                 </ol>
@@ -112,19 +120,33 @@ export default function ProfilPage() {
         </div>
       </section>
 
-      {/* ── 3. Visi Misi / Narasi Lurah ────────────────────────────────── */}
+      {/* ── 3. Narasi Lurah ────────────────────────────────────────────── */}
       <section className={`${sectionClass(bgs[2])} py-12 px-4 sm:px-6`}>
         <div className="mx-auto max-w-5xl">
-          <SectionTitle>Narasi &amp; Visi Misi Lurah</SectionTitle>
-          {site.visiMisiLurah ? (
-            <div className="rounded-2xl border border-[#C1C8C2] bg-white p-5 shadow-sm">
-              <p className="text-[#1C1C18] leading-relaxed whitespace-pre-line text-sm sm:text-base">
-                {site.visiMisiLurah}
-              </p>
+          <SectionTitle>Narasi Lurah</SectionTitle>
+          {site.narasiLurah ? (
+            <div className="rounded-2xl border border-[#C1C8C2] bg-white p-6 sm:p-8 shadow-sm space-y-5">
+              <div>
+                <h3 className="text-lg sm:text-xl font-bold text-[#1B4332] leading-snug">
+                  {site.narasiLurah.judul}
+                </h3>
+                <p className="mt-1 text-sm italic font-medium text-[#BC6C25]">
+                  &ldquo;{site.narasiLurah.tagline}&rdquo;
+                </p>
+              </div>
+              <div className="space-y-3 pt-1 text-sm sm:text-base text-[#1C1C18] leading-relaxed">
+                {site.narasiLurah.paragraf.map((p, idx) => (
+                  <p key={idx}>{p}</p>
+                ))}
+              </div>
+              <div className="pt-4 border-t border-[#C1C8C2]">
+                <p className="font-bold text-[#1B4332] text-base">{site.narasiLurah.nama}</p>
+                <p className="text-xs sm:text-sm text-[#414844]">{site.narasiLurah.jabatan}</p>
+              </div>
             </div>
           ) : (
             <p className="text-[#414844] italic text-sm sm:text-base">
-              Narasi dan visi misi Lurah akan segera ditambahkan.
+              Narasi Lurah akan segera ditambahkan.
             </p>
           )}
         </div>
@@ -132,46 +154,58 @@ export default function ProfilPage() {
 
       {/* ── 4. Struktur Pemerintahan ───────────────────────────────────── */}
       <section className={`${sectionClass(bgs[3])} py-12 px-4 sm:px-6`}>
-        <div className="mx-auto max-w-5xl">
-          <SectionTitle>Struktur Pemerintahan</SectionTitle>
-
-          {perangkat.length === 0 ? (
-            <p className="text-[#414844] italic text-sm sm:text-base">
-              Struktur pemerintahan akan segera ditambahkan.
+        <div className="mx-auto max-w-5xl space-y-8">
+          <div>
+            <SectionTitle>Struktur Pemerintahan</SectionTitle>
+            <p className="text-sm text-[#414844]">
+              Aparatur dan perangkat yang melayani masyarakat {site.nama}.
             </p>
-          ) : (
-            <div className="space-y-6">
-              {/* Lurah — baris sendiri, di-tengah */}
-              {perangkat
-                .filter((p) => p.jabatan.toLowerCase().includes('lurah'))
-                .map((p) => (
-                  <div key={p.nama} className="flex justify-center">
-                    <div className="w-full max-w-xs">
-                      <PerangkatCard perangkat={p} isLurah />
-                    </div>
-                  </div>
-                ))}
+          </div>
 
-              {/* Pemisah visual (hanya tampil jika ada Lurah DAN perangkat lain) */}
-              {perangkat.some((p) => p.jabatan.toLowerCase().includes('lurah')) &&
-                perangkat.some((p) => !p.jabatan.toLowerCase().includes('lurah')) && (
-                  <div className="flex items-center gap-3">
-                    <div className="flex-1 border-t border-[#C1C8C2]" />
-                    <span className="text-xs text-[#414844]">Perangkat Kelurahan</span>
-                    <div className="flex-1 border-t border-[#C1C8C2]" />
-                  </div>
-                )}
-
-              {/* Perangkat lain — grid responsif */}
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                {perangkat
-                  .filter((p) => !p.jabatan.toLowerCase().includes('lurah'))
-                  .map((p) => (
-                    <PerangkatCard key={p.nama} perangkat={p} />
-                  ))}
-              </div>
+          {/* Bagian Pejabat Kelurahan */}
+          <div>
+            <h3 className="text-lg font-bold text-[#1B4332] mb-4">
+              Pejabat Kelurahan
+            </h3>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {pejabatInti.map((p) => (
+                <PerangkatCard
+                  key={p.nama}
+                  pejabat={p}
+                  isLurah={p.jabatan.toLowerCase().includes('lurah')}
+                />
+              ))}
             </div>
-          )}
+          </div>
+
+          {/* Bagian Kepala Lingkungan */}
+          <div>
+            <h3 className="text-lg font-bold text-[#1B4332] mb-4">
+              Kepala Lingkungan
+            </h3>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              {lingkungan.map((l) => (
+                <div
+                  key={l.nama}
+                  className="rounded-2xl border border-[#C1C8C2] bg-white p-5 shadow-sm"
+                >
+                  <h4 className="font-bold text-[#1B4332] text-base mb-2">
+                    {l.nama}
+                  </h4>
+                  <div className="space-y-1 text-sm text-[#414844]">
+                    <p>
+                      <span className="font-medium text-[#1C1C18]">Kepala:</span>{' '}
+                      {l.kepala}
+                    </p>
+                    <p>
+                      <span className="font-medium text-[#1C1C18]">Wakil:</span>{' '}
+                      {l.wakil}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -180,10 +214,9 @@ export default function ProfilPage() {
         <div className="mx-auto max-w-5xl">
           <SectionTitle>Peta Wilayah</SectionTitle>
 
-          {/* Placeholder gambar peta — nanti diganti next/image */}
+          {/* Placeholder gambar peta */}
           <div className="rounded-2xl overflow-hidden border border-[#C1C8C2] shadow-sm">
             <div className="relative w-full aspect-video bg-[#C1C8C2] flex flex-col items-center justify-center gap-3">
-              {/* Ikon peta sederhana */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -205,7 +238,6 @@ export default function ProfilPage() {
             </div>
           </div>
 
-          {/* Keterangan di bawah peta */}
           <p className="mt-3 text-xs text-[#414844] text-center sm:text-sm">
             Peta wilayah {site.nama} akan ditampilkan di sini setelah gambar
             dari kantor kelurahan tersedia.

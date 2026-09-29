@@ -23,8 +23,8 @@ export default function Navbar() {
   }
 
   return (
-    // Navbar sticky putih dengan border bawah tipis
-    <header className="sticky top-0 z-50 bg-white border-b border-[#C1C8C2] shadow-sm">
+    // Navbar sticky dengan latar krem #FAF7F2 dan border bawah tipis
+    <header className="sticky top-0 z-50 bg-[#FAF7F2] border-b border-[#C1C8C2] shadow-sm">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
 
         {/* Brand — tiga logo dalam kontainer bordered */}
@@ -126,9 +126,9 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile dropdown panel — latar putih, teks hijau tua */}
+      {/* Mobile dropdown panel — latar krem #FAF7F2, teks hijau tua */}
       {isOpen && (
-        <div className="border-t border-[#C1C8C2] bg-white md:hidden">
+        <div className="border-t border-[#C1C8C2] bg-[#FAF7F2] md:hidden">
           <ul className="mx-auto flex max-w-6xl flex-col px-4 py-2 sm:px-6">
             {links.map((link) => (
               <li key={link.href}>

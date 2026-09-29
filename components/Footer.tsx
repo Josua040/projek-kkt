@@ -49,7 +49,7 @@ export default function Footer() {
         </div>
 
         <p className="mt-8 border-t border-white/10 pt-4 text-xs text-[#a5d0b9]">
-          © {new Date().getFullYear()} Kelurahan Kumelembuay — Website profil dibuat untuk program KKT Unsrat.
+          © {new Date().getFullYear()} Website profil kelurahan ini dibuat untuk program kerja KKT 149 Kumelembuay Unsrat.
         </p>
       </div>
     </footer>
