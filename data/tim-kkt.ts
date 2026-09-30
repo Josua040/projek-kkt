@@ -46,7 +46,7 @@ export const timKkt = {
       bidang: "Bidang Pelaporan",
       anggota: [
         { nama: "Yuliana D. D. Mansawan", nim: "230811030005", jabatan: "Koordinator", foto: "/images/tim-kkt/yuliana.jpeg" },
-        { nama: "Natanail Piter", nim: "230311080019", jabatan: "Anggota", foto: "/images/tim-kkt/piter.jpeg" },
+        { nama: "Natanail Piter", nim: "230311080019", jabatan: "Anggota", foto: "/images/tim-kkt/Piter.jpeg" },
         { nama: "Fernando J. Thadius", nim: "230211060111", jabatan: "Anggota", foto: "/images/tim-kkt/fernando.jpeg" },
       ],
     },
