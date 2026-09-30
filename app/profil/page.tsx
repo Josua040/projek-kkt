@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { site } from '@/data/site';
-import { pejabatInti, lingkungan } from '@/data/pemerintahan';
-import PerangkatCard from '@/components/PerangkatCard';
+import StrukturPemerintahan from '@/components/StrukturPemerintahan';
 
 export const metadata: Metadata = {
   title: `Profil Kelurahan — ${site.nama}`,
@@ -154,58 +153,8 @@ export default function ProfilPage() {
 
       {/* ── 4. Struktur Pemerintahan ───────────────────────────────────── */}
       <section className={`${sectionClass(bgs[3])} py-12 px-4 sm:px-6`}>
-        <div className="mx-auto max-w-5xl space-y-8">
-          <div>
-            <SectionTitle>Struktur Pemerintahan</SectionTitle>
-            <p className="text-sm text-[#414844]">
-              Aparatur dan perangkat yang melayani masyarakat {site.nama}.
-            </p>
-          </div>
-
-          {/* Bagian Pejabat Kelurahan */}
-          <div>
-            <h3 className="text-lg font-bold text-[#1B4332] mb-4">
-              Pejabat Kelurahan
-            </h3>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {pejabatInti.map((p) => (
-                <PerangkatCard
-                  key={p.nama}
-                  pejabat={p}
-                  isLurah={p.jabatan.toLowerCase().includes('lurah')}
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* Bagian Kepala Lingkungan */}
-          <div>
-            <h3 className="text-lg font-bold text-[#1B4332] mb-4">
-              Kepala Lingkungan
-            </h3>
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-              {lingkungan.map((l) => (
-                <div
-                  key={l.nama}
-                  className="rounded-2xl border border-[#C1C8C2] bg-white p-5 shadow-sm"
-                >
-                  <h4 className="font-bold text-[#1B4332] text-base mb-2">
-                    {l.nama}
-                  </h4>
-                  <div className="space-y-1 text-sm text-[#414844]">
-                    <p>
-                      <span className="font-medium text-[#1C1C18]">Kepala:</span>{' '}
-                      {l.kepala}
-                    </p>
-                    <p>
-                      <span className="font-medium text-[#1C1C18]">Wakil:</span>{' '}
-                      {l.wakil}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+        <div className="mx-auto max-w-5xl">
+          <StrukturPemerintahan />
         </div>
       </section>
 
