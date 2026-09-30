@@ -79,6 +79,6 @@ export const site = {
     email: "kelurahankumelembuaitmhntimur@gmail.com",
   },
 
-  jamKantor: null as string | null, // TODO: menyusul
+  jamKantor: "Senin – Jumat (08.00 – 16.00)",
   koordinat: [1.3306, 124.8722] as [number, number], // perkiraan; TODO ganti presisi
 };

@@ -1,12 +1,10 @@
 import type { Metadata } from 'next';
 import { site } from '@/data/site';
-import { timKKT } from '@/data/tim-kkt';
 import MapWrapper from '@/components/MapWrapper';
-import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: `Kontak — ${site.nama}`,
-  description: `Informasi kontak, lokasi peta, dan tim KKT Unsrat ${site.nama}, ${site.kecamatan}, ${site.kota}.`,
+  description: `Informasi kontak dan lokasi peta ${site.nama}, ${site.kecamatan}, ${site.kota}.`,
 };
 
 // ---------------------------------------------------------------------------
@@ -52,11 +50,22 @@ function IconEmail() {
   );
 }
 
+function IconJam() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"
+      className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#BC6C25]" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" />
+      <polyline points="12 6 12 12 16 14" />
+    </svg>
+  );
+}
+
 // ---------------------------------------------------------------------------
 // Halaman utama
 // ---------------------------------------------------------------------------
 export default function KontakPage() {
-  const { koordinat, nama, kecamatan, kota, kontak } = site;
+  const { koordinat, nama, kecamatan, kota, kontak, jamKantor } = site;
   const [lat, lng] = koordinat;
   const mapsUrl = `https://www.google.com/maps?q=${lat},${lng}`;
 
@@ -153,6 +162,19 @@ export default function KontakPage() {
                   )}
                 </div>
               </div>
+
+              {/* Jam Pelayanan */}
+              <div className="flex items-start gap-3">
+                <IconJam />
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-widest text-[#BC6C25]">
+                    Jam Pelayanan
+                  </p>
+                  <p className="mt-0.5 text-sm text-[#1C1C18]">
+                    {jamKantor ?? 'Data menyusul'}
+                  </p>
+                </div>
+              </div>
             </div>
 
             {/* ── Peta Leaflet ───────────────────────────────────────── */}
@@ -185,75 +207,6 @@ export default function KontakPage() {
               </p>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* ── Tim KKT Unsrat ────────────────────────────────────────────── */}
-      <section className="bg-[#F3EFE6] py-12 px-4 sm:px-6">
-        <div className="mx-auto max-w-5xl">
-          <h2 className="text-2xl font-bold text-[#1B4332] mb-4">
-            Tim KKT Unsrat
-          </h2>
-
-          {!timKKT.periode && timKKT.anggota.length === 0 && !timKKT.fotoTim ? (
-            <p className="text-[#414844] italic text-sm sm:text-base">
-              Data tim KKT akan segera ditambahkan.
-            </p>
-          ) : (
-            <div className="space-y-6">
-              {/* Periode */}
-              {timKKT.periode && (
-                <p className="text-sm text-[#414844]">
-                  <span className="font-semibold text-[#1B4332]">Periode:</span>{' '}
-                  {timKKT.periode}
-                </p>
-              )}
-
-              {/* Foto tim */}
-              <div className="relative w-full aspect-video overflow-hidden rounded-2xl bg-[#C1C8C2] border border-[#C1C8C2]">
-                {timKKT.fotoTim ? (
-                  <Image
-                    src={timKKT.fotoTim}
-                    alt="Foto tim KKT Unsrat di Kelurahan Kumelembuay"
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 896px"
-                    className="object-cover"
-                  />
-                ) : (
-                  <div className="flex h-full w-full flex-col items-center justify-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"
-                      strokeLinejoin="round" className="h-12 w-12 text-[#8a9490]" aria-hidden="true">
-                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                      <circle cx="8.5" cy="8.5" r="1.5" />
-                      <polyline points="21 15 16 10 5 21" />
-                    </svg>
-                    <p className="text-sm text-[#8a9490]">Foto tim menyusul</p>
-                  </div>
-                )}
-              </div>
-
-              {/* Daftar anggota */}
-              {timKKT.anggota.length > 0 && (
-                <div>
-                  <p className="mb-3 text-sm font-semibold text-[#1B4332]">
-                    Anggota Tim
-                  </p>
-                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                    {timKKT.anggota.map((a, idx) => (
-                      <div
-                        key={idx}
-                        className="rounded-xl border border-[#C1C8C2] bg-white p-4 shadow-sm"
-                      >
-                        <p className="font-semibold text-sm text-[#1C1C18]">{a.nama}</p>
-                        <p className="mt-0.5 text-xs text-[#414844]">{a.prodi}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
         </div>
       </section>
     </main>

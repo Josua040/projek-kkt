@@ -16,7 +16,7 @@ Login/admin, CMS, database, layanan surat, APBDes/anggaran, formulir kontak/peng
 Data Penduduk dan Galeri sudah **diputuskan dicoret**; boleh ditambah nanti hanya jika developer meminta.
 
 ## 3. Navigasi
-Beranda · Profil Kelurahan · Potensi Wisata · Kontak
+Beranda · Profil Kelurahan · Potensi Wisata · Kontak · Tentang Kami
 
 | Menu | Route |
 |---|---|
@@ -24,6 +24,7 @@ Beranda · Profil Kelurahan · Potensi Wisata · Kontak
 | Profil Kelurahan | `/profil` |
 | Potensi Wisata | `/potensi` |
 | Kontak | `/kontak` |
+| Tentang Kami | `/tentang` |
 
 Di HP, menu berupa **hamburger** (lihat `DESIGN.md`).
 
@@ -52,11 +53,14 @@ Urutan section:
 ### 4.4 Kontak `/kontak`
 - Info: **jalan, alamat lengkap, nomor telepon, email** kantor kelurahan.
 - **Peta Leaflet** dengan satu marker di lokasi kantor/kelurahan (tanpa polygon batas wilayah).
-- Section **Tim KKT Unsrat**: foto tim, nama, program studi, periode KKT. *(Penempatan di Kontak adalah usulan; ubah bila developer memutuskan lain.)*
 - Tanpa formulir; hanya informasi kontak.
 
 ### 4.5 Elemen global
 - **Navbar** (sticky) dan **Footer** (nama kelurahan, alamat singkat, navigasi, kredit "dibuat untuk program KKT Unsrat").
+
+### 4.6 Tentang Kami `/tentang`
+- Judul "Tentang Kami" dan 1–2 kalimat penjelasan bahwa website dibuat sebagai program kerja KKT (Kuliah Kerja Terpadu) Unsrat untuk Kelurahan Kumelembuay.
+- Section **Tim KKT Unsrat**: periode KKT, foto tim, daftar nama dan program studi anggota tim KKT. Jika data masih kosong, menampilkan "Data tim KKT akan segera ditambahkan.".
 
 ## 5. Model data (usulan)
 Semua konten di folder `data/`, sehingga mengisi data cukup mengedit file, bukan komponen.

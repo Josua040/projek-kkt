@@ -11,6 +11,7 @@ const links = [
   { href: '/profil', label: 'Profil Kelurahan' },
   { href: '/potensi', label: 'Potensi Wisata' },
   { href: '/kontak', label: 'Kontak' },
+  { href: '/tentang', label: 'Tentang Kami' },
 ];
 
 export default function Navbar() {
