@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { timKKT } from '@/data/tim-kkt';
+import { timKkt } from '@/data/tim-kkt';
 
 const navLinks = [
   { href: '/profil', label: 'Profil Kelurahan' },
@@ -54,9 +54,9 @@ export default function Footer() {
           <p>
             © {new Date().getFullYear()} Website profil kelurahan ini dibuat untuk program kerja KKT 149 Kumelembuay Unsrat.
           </p>
-          {timKKT.instagram && (
+          {timKkt.instagram && (
             <a
-              href={timKKT.instagram}
+              href={timKkt.instagram}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram Tim KKT"
