@@ -14,7 +14,7 @@ export const pejabatInti: PejabatInti[] = [
   { nama: "Audi Pangemanan, S.Kep.", jabatan: "Lurah" },
   { nama: "Franly Y. Kaunang, SST.", jabatan: "Sekretaris" },
   { nama: "Fredy N. H. Paat", jabatan: "Kepala Seksi Kesejahteraan" },
-  { nama: "Jefry Pangemanan, AMK.", jabatan: "Kepala Seksi Pemerintahan dan Trantib" },
+  { nama: "Jefry Pangemanan, AMK.", jabatan: "Staf" },
 ];
 
 export const lingkungan: Lingkungan[] = [

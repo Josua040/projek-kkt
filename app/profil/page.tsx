@@ -71,16 +71,19 @@ export default function ProfilPage() {
         </div>
       </section>
 
-      {/* ── 2. Visi dan Misi Kelurahan ─────────────────────────────────── */}
+      {/* ── 2. Visi dan Misi ───────────────────────────────────────────── */}
       <section className={`${sectionClass(bgs[1])} py-12 px-4 sm:px-6`}>
         <div className="mx-auto max-w-5xl">
-          <SectionTitle>Visi dan Misi Kelurahan</SectionTitle>
+          <SectionTitle>Visi dan Misi</SectionTitle>
+          <p className="text-sm text-[#414844] mb-6">
+            Kecamatan Tomohon Timur dan Kelurahan Kumelembuay berpedoman pada Visi dan Misi Pemerintah Kota Tomohon.
+          </p>
           {site.visiMisiKelurahan ? (
             <div className="space-y-6">
               {/* Visi sebagai kutipan */}
               <blockquote className="rounded-2xl border-l-4 border-[#1B4332] bg-white p-6 shadow-sm">
                 <p className="text-xs font-semibold uppercase tracking-widest text-[#BC6C25] mb-2">
-                  Visi
+                  Visi Kota Tomohon
                 </p>
                 <p className="text-[#1C1C18] text-base sm:text-lg italic font-medium leading-relaxed">
                   &ldquo;{site.visiMisiKelurahan.visi}&rdquo;
@@ -90,22 +93,17 @@ export default function ProfilPage() {
               {/* Misi sebagai daftar 5 item */}
               <div className="rounded-2xl border border-[#C1C8C2] bg-white p-6 shadow-sm">
                 <p className="text-xs font-semibold uppercase tracking-widest text-[#BC6C25] mb-4">
-                  Misi
+                  Misi Kota Tomohon
                 </p>
-                <ol className="space-y-4">
+                <ol className="space-y-3.5">
                   {site.visiMisiKelurahan.misi.map((item, idx) => (
                     <li key={idx} className="flex items-start gap-3">
                       <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#1B4332] text-xs font-bold text-white mt-0.5">
                         {idx + 1}
                       </span>
-                      <div>
-                        <p className="font-bold text-[#1B4332] text-sm sm:text-base">
-                          {item.judul}
-                        </p>
-                        <p className="mt-1 text-[#414844] text-sm leading-relaxed">
-                          {item.deskripsi}
-                        </p>
-                      </div>
+                      <p className="text-[#1C1C18] text-sm sm:text-base leading-relaxed pt-0.5">
+                        {item}
+                      </p>
                     </li>
                   ))}
                 </ol>
@@ -113,7 +111,7 @@ export default function ProfilPage() {
             </div>
           ) : (
             <p className="text-[#414844] italic text-sm sm:text-base">
-              Visi dan misi kelurahan akan segera ditambahkan.
+              Visi dan misi akan segera ditambahkan.
             </p>
           )}
         </div>

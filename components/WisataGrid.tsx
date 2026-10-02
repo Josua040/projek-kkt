@@ -81,7 +81,7 @@ export default function WisataGrid({ items }: WisataGridProps) {
           const pos = idx % 4;
 
           // Kelas untuk wadah kartu (ukuran & span)
-          const mobileAspect = MOBILE_ASPECT[pos];
+          const mobileAspect = useBento ? MOBILE_ASPECT[pos] : 'aspect-[4/3]';
           const smSpan = useBento ? SM_SPAN[pos] : '';
           const lgSpan = useBento ? LG_SPAN[pos] : '';
           const wrapperClass = [mobileAspect, smSpan, lgSpan].filter(Boolean).join(' ');
@@ -89,9 +89,9 @@ export default function WisataGrid({ items }: WisataGridProps) {
           return (
             <div
               key={item.id}
-              // Pada sm/lg, aspect-ratio diganti oleh grid auto-rows,
+              // Pada bento sm/lg, aspect-ratio diganti oleh grid auto-rows,
               // jadi wadah harus h-full agar mengisi baris grid
-              className={`${wrapperClass} sm:h-full`}
+              className={`${wrapperClass} ${useBento ? 'sm:h-full' : ''}`}
             >
               <button
                 type="button"

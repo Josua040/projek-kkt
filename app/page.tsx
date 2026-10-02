@@ -27,8 +27,8 @@ export default function BerandaPage() {
       {/* Hero */}
       <section
         className="relative overflow-hidden bg-[#1B4332] text-white
-          min-h-[420px] flex items-center
-          px-4 py-20 sm:px-6 sm:min-h-[520px]"
+          min-h-[460px] flex items-center
+          px-4 pt-16 pb-24 sm:px-6 sm:min-h-[520px] sm:pt-20 sm:pb-28"
       >
         {/* Foto latar */}
         <Image
@@ -53,61 +53,152 @@ export default function BerandaPage() {
         {/* Konten teks — rata kiri, di atas overlay */}
         <div className="relative z-10 w-full max-w-6xl mx-auto">
           <div className="max-w-xl text-left">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#a5d0b9]">
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-xs border border-white/20 px-3.5 py-1 text-xs font-semibold text-[#C1ECD4]">
+              <span className="h-2 w-2 rounded-full bg-[#A5D0B9] animate-pulse" />
+              <span>Selamat Datang di Portal Resmi</span>
+            </div>
+            <p className="mb-2 text-xs sm:text-sm font-semibold uppercase tracking-wide text-[#a5d0b9]">
               Kecamatan Tomohon Timur · Kota Tomohon
             </p>
-            <h1 className="text-4xl font-extrabold leading-tight sm:text-5xl">
+            <h1 className="text-3xl font-extrabold leading-tight sm:text-5xl">
               Mengenal Lebih Dekat Kelurahan Kumelembuay
             </h1>
-            <p className="mt-4 text-[#c1ecd4]">
+            <p className="mt-4 text-sm sm:text-base text-[#c1ecd4] leading-relaxed">
               Profil dan potensi wisata Kelurahan Kumelembuay dari lereng Gunung
               Mahawu untuk warga dan pengunjung.
             </p>
-            <Link
-              href="/profil"
-              className="mt-8 inline-block rounded-full bg-white px-7 py-3 text-sm font-semibold text-[#1B4332] transition hover:bg-[#D4A373] hover:text-white"
-            >
-              Lihat Profil Kelurahan
-            </Link>
+            <div className="mt-7 flex flex-wrap items-center gap-3">
+              <Link
+                href="/potensi"
+                className="inline-flex items-center gap-2 rounded-full bg-[#BC6C25] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#D4A373] shadow-sm"
+              >
+                <span>Jelajahi Potensi</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  className="h-4 w-4"
+                  aria-hidden="true"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </Link>
+              <Link
+                href="/profil"
+                className="inline-flex items-center gap-2 rounded-full bg-white/15 backdrop-blur-xs border border-white/25 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white hover:text-[#1B4332]"
+              >
+                <span>Lihat Profil Kelurahan</span>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Statistik ringkas — 4 kartu (grid-cols-2 sm:grid-cols-4) */}
-      <section className="mx-auto grid max-w-5xl grid-cols-2 gap-4 px-4 py-10 sm:grid-cols-4 sm:px-6">
-        {/* 1. Tahun Berdiri */}
-        <div className="flex flex-col justify-center rounded-2xl border border-[#c1c8c2] bg-white p-5 text-center shadow-sm">
-          <p className="text-sm sm:text-base font-extrabold text-[#1B4332] leading-tight">
-            {site.tahunDesa} · Kelurahan sejak {site.tahunKelurahan}
-          </p>
-          <p className="mt-2 text-xs text-[#414844]">Tahun Berdiri</p>
-        </div>
+      {/* Statistik ringkas — Floating Bar terpadu persis seperti gambar referensi */}
+      <section className="relative z-20 -mt-8 sm:-mt-12 lg:-mt-14 mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="rounded-2xl sm:rounded-3xl border border-gray-100 bg-white p-5 sm:p-7 shadow-[0_12px_36px_rgba(0,0,0,0.08)]">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+            {/* 1. Jumlah Penduduk */}
+            <div className="flex items-center gap-3 sm:gap-4">
+              <div className="flex h-12 w-12 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-2xl bg-[#EAF3F8] text-[#1E293B]">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="h-6 w-6 sm:h-7 sm:w-7"
+                  aria-hidden="true"
+                >
+                  <path d="M12 12c1.93 0 3.5-1.57 3.5-3.5S13.93 5 12 5 8.5 6.57 8.5 8.5 10.07 12 12 12zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-1.5c0-2.33-4.67-3.5-7-3.5z" />
+                  <circle cx="5" cy="10" r="2" />
+                  <path d="M5 13c-.9 0-2.5.45-3 1v2h3.5v-1.5c0-.62.24-1.2.65-1.66-.37-.09-.76-.14-1.15-.14z" />
+                  <circle cx="19" cy="10" r="2" />
+                  <path d="M19 13c-.39 0-.78.05-1.15.14.41.46.65 1.04.65 1.66V16H22v-2c-.5-.55-2.1-1-3-1z" />
+                </svg>
+              </div>
+              <div className="min-w-0">
+                <p className="text-2xl sm:text-3xl lg:text-[32px] font-black text-[#111827] leading-none tracking-tight">
+                  {site.dataPenduduk.jumlahJiwa.toLocaleString('id-ID')}
+                </p>
+                <p className="mt-1.5 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#64748B]">
+                  Jiwa Penduduk
+                </p>
+              </div>
+            </div>
 
-        {/* 2. Luas Wilayah */}
-        <div className="flex flex-col justify-center rounded-2xl border border-[#c1c8c2] bg-white p-5 text-center shadow-sm">
-          <p className="text-xl sm:text-2xl font-extrabold text-[#1B4332] leading-tight">
-            {site.luasWilayah}
-          </p>
-          <p className="mt-2 text-xs text-[#414844]">Luas Wilayah</p>
-        </div>
+            {/* 2. Luas Wilayah */}
+            <div className="flex items-center gap-3 sm:gap-4">
+              <div className="flex h-12 w-12 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-2xl bg-[#EAF3F8] text-[#965727]">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="h-6 w-6 sm:h-7 sm:w-7"
+                  aria-hidden="true"
+                >
+                  <circle cx="7" cy="7" r="2.5" />
+                  <path d="M2.5 19h19l-6.5-9-4 5.5-2.5-3.2L2.5 19z" />
+                </svg>
+              </div>
+              <div className="min-w-0">
+                <p className="text-2xl sm:text-3xl lg:text-[32px] font-black text-[#111827] leading-none tracking-tight">
+                  330
+                </p>
+                <p className="mt-1.5 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#64748B]">
+                  Hektar Wilayah
+                </p>
+              </div>
+            </div>
 
-        {/* 3. Mayoritas Mata Pencaharian */}
-        <div className="flex flex-col justify-center rounded-2xl border border-[#c1c8c2] bg-white p-5 text-center shadow-sm">
-          <p className="text-xs sm:text-sm font-bold text-[#1B4332] leading-snug">
-            {site.mataPencaharian}
-          </p>
-          <p className="mt-2 text-xs text-[#414844]">Mayoritas Mata Pencaharian</p>
-        </div>
+            {/* 3. Tahun Berdiri */}
+            <div className="flex items-center gap-3 sm:gap-4">
+              <div className="flex h-12 w-12 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-2xl bg-[#EAF3F8] text-[#1E293B]">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="h-6 w-6 sm:h-7 sm:w-7"
+                  aria-hidden="true"
+                >
+                  <path d="M12 2L2 7v2h20V7L12 2zM4 11v7h3v-7H4zm5 0v7h3v-7H9zm5 0v7h3v-7h-3zm5 0v7h3v-7h-3zM2 20v2h20v-2H2z" />
+                </svg>
+              </div>
+              <div className="min-w-0">
+                <p className="text-2xl sm:text-3xl lg:text-[32px] font-black text-[#111827] leading-none tracking-tight">
+                  {site.tahunDesa}
+                </p>
+                <p className="mt-1.5 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#64748B]">
+                  Tahun Berdiri
+                </p>
+              </div>
+            </div>
 
-        {/* 4. Jumlah Penduduk */}
-        <div className="flex flex-col justify-center rounded-2xl border border-[#c1c8c2] bg-white p-5 text-center shadow-sm">
-          <p className="text-xl sm:text-2xl font-extrabold text-[#1B4332] leading-tight">
-            {site.dataPenduduk.jumlahJiwa}
-          </p>
-          <p className="mt-1 text-xs font-semibold text-[#1B4332]">Jumlah Penduduk</p>
-          <p className="mt-1 text-[11px] leading-tight text-[#414844]">
-            {site.dataPenduduk.jumlahKK} KK · L {site.dataPenduduk.lakiLaki}, P {site.dataPenduduk.perempuan}
-          </p>
+            {/* 4. Mayoritas Mata Pencaharian */}
+            <div className="flex items-center gap-3 sm:gap-4">
+              <div className="flex h-12 w-12 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-2xl bg-[#EAF3F8] text-[#965727]">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="h-6 w-6 sm:h-7 sm:w-7"
+                  aria-hidden="true"
+                >
+                  <path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66.95-2.3C8.24 16.48 10.42 14.8 13 14.3V19h2v-4.83c1.78-.39 3.51-1.33 4.88-2.73 1.15-1.18 1.95-2.65 2.12-4.24.03-.3-.08-.59-.3-.79-.22-.2-.51-.27-.8-.21-1.3.26-2.58.82-3.9 1.8zm-6-2c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z" />
+                </svg>
+              </div>
+              <div className="min-w-0">
+                <p className="text-2xl sm:text-3xl lg:text-[32px] font-black text-[#111827] leading-none tracking-tight">
+                  75%
+                </p>
+                <p className="mt-1.5 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#64748B]">
+                  Petani &amp; Agraris
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

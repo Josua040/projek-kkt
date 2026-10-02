@@ -40,34 +40,13 @@ export const site = {
     "Kelurahan Kumelembuai yang terletak di Kecamatan Tomohon Timur, Kota Tomohon, merupakan wilayah yang lahir dari kearifan lokal sub-etnis Tombulu, salah satu kelompok masyarakat adat asli Minahasa. Secara etimologis, nama Kumelembuai berasal dari kata dasar dalam bahasa daerah Minahasa, yaitu makelembuang atau kumelembubu, yang berarti \"air memancar\", \"air bergelembung\", atau menyerupai \"air mendidih\". Penamaan mendalam ini merujuk langsung pada kondisi geografis di masa lampau, di mana kawasan kaki Gunung Mahawu dan Tintingon ini melimpah dengan mata air murni yang memancar dan bergelembung keluar dari dalam tanah. Terpikat oleh kesuburan tanah dan ketersediaan sumber air tersebut, para leluhur kemudian membuka permukiman atau wanua di sana, menjadikan mata air tersebut sebagai episentrum kehidupan dan pertanian mereka. Seiring berjalannya waktu, wilayah perkampungan tradisional ini terus berkembang di bawah sistem pemerintahan walak Tomohon hingga bertransformasi menjadi kelurahan modern seperti saat ini. Kini, Kumelembuai tidak hanya dikenal sebagai daerah penyangga agraris yang subur, tetapi juga telah menjelma menjadi salah satu destinasi ekowisata dan budaya unggulan di Kota Tomohon, yang terkenal lewat keindahan alam Puncak Tetetana, Puncak Melby'Ls, serta pelestarian budaya aren di Tuur Ma'asering.",
 
   visiMisiKelurahan: {
-    visi:
-      "Terwujudnya Kelurahan Kumelembuai yang maju, mandiri, sejahtera, dan berkelanjutan melalui pelayanan yang berkualitas, pengembangan potensi lokal, serta semangat kebersamaan dan gotong royong masyarakat.",
+    visi: "Tomohon Maju, Berdaya Saing, dan Sejahtera",
     misi: [
-      {
-        judul: "Meningkatkan kualitas pelayanan kepada masyarakat",
-        deskripsi:
-          "Mewujudkan pelayanan administrasi yang cepat, mudah, transparan, dan responsif terhadap kebutuhan masyarakat.",
-      },
-      {
-        judul: "Meningkatkan kesejahteraan dan kemandirian masyarakat",
-        deskripsi:
-          "Mendorong pemberdayaan masyarakat melalui pengembangan usaha, UMKM, kelompok masyarakat, serta pemanfaatan potensi ekonomi lokal.",
-      },
-      {
-        judul: "Mengembangkan potensi pertanian dan ekonomi lokal",
-        deskripsi:
-          "Mendukung masyarakat dalam mengembangkan sektor pertanian dan usaha berbasis potensi Kelurahan Kumelembuai agar dapat meningkatkan pendapatan masyarakat.",
-      },
-      {
-        judul: "Mewujudkan lingkungan yang bersih, sehat, dan berkelanjutan",
-        deskripsi:
-          "Meningkatkan kesadaran masyarakat dalam menjaga kebersihan, mengelola sampah, melestarikan lingkungan, serta menciptakan lingkungan kelurahan yang nyaman.",
-      },
-      {
-        judul: "Meningkatkan partisipasi dan gotong royong masyarakat",
-        deskripsi:
-          "Mendorong keterlibatan masyarakat dalam pembangunan kelurahan melalui kerja sama, musyawarah, dan kegiatan sosial kemasyarakatan.",
-      },
+      "Menjaga dan melestarikan Kota Tomohon sebagai kota yang religius dan berbudaya.",
+      "Mengembangkan ketahanan pangan serta pembangunan yang berwawasan lingkungan.",
+      "Menjadikan Tomohon sebagai kota wisata dunia.",
+      "Mewujudkan tata kelola pemerintahan yang berintegritas, adaptif, dan responsif.",
+      "Meningkatkan kesejahteraan masyarakat secara menyeluruh.",
     ],
   },
 

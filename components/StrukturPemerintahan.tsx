@@ -67,6 +67,9 @@ function getDeskripsiJabatan(jabatan: string): string {
   if (j.includes('kesejahteraan')) {
     return 'Bantuan Sosial, Kesehatan & Kesejahteraan Warga';
   }
+  if (j.includes('staf')) {
+    return 'Pelaksana Teknis & Administrasi Kelurahan';
+  }
   if (j.includes('pemerintahan') || j.includes('trantib')) {
     return 'Pemerintahan, Trantib & Pelayanan Wilayah';
   }

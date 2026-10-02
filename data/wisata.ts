@@ -36,13 +36,4 @@ export const wisata: Wisata[] = [
     deskripsiLengkap:
       "Tuur Ma'asering merupakan destinasi wisata yang memadukan keindahan alam dengan kearifan lokal masyarakat Minahasa. Kawasan ini berada di tengah lingkungan pohon aren yang menjadi bagian penting dari kehidupan masyarakat setempat. Salah satu daya tarik utamanya adalah pengunjung dapat mengenal secara langsung proses pengolahan air nira menjadi saguer serta proses penyulingan yang menghasilkan minuman tradisional Cap Tikus. Selain itu, suasana wisata semakin khas dengan keberadaan pondok dan bangunan yang menggunakan material kayu dan bambu. Perpaduan antara hutan aren, tradisi pengolahan nira, serta suasana pedesaan menjadikan Tuur Ma'asering tidak hanya sebagai tempat rekreasi, tetapi juga ruang untuk mengenal budaya dan kearifan lokal masyarakat Kumelembuai.",
   },
-  {
-    id: "ranowawa-waterfall",
-    nama: "Air Terjun Ranowawa",
-    kategori: "Wisata Alam",
-    deskripsiSingkat:
-      "Air terjun alami yang sejuk dan tenang; tercatat dalam Rencana Induk Pariwisata Manado-Likupang.",
-    deskripsiLengkap:
-      "Air Terjun Ranowawa merupakan salah satu potensi wisata alam yang memiliki karakter berbeda dari destinasi puncak di Kumelembuai. Daya tarik utamanya adalah keberadaan air terjun yang berpadu dengan lingkungan alam yang masih alami, sehingga memberikan suasana sejuk dan tenang bagi pengunjung. Suara aliran air, pepohonan, serta kondisi lingkungan di sekitar air terjun menjadi bagian dari pengalaman wisata alam yang ditawarkan. Potensi Ranowawa dapat dikembangkan sebagai destinasi rekreasi berbasis alam sekaligus sebagai kawasan yang mengedepankan kelestarian lingkungan. Dalam dokumen Rencana Induk Pariwisata Manado-Likupang, Air Terjun Ranowawa juga tercatat sebagai salah satu daya tarik wisata alam di Tomohon Timur.",
-  },
 ];
