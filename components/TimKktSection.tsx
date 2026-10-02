@@ -87,12 +87,20 @@ export default function TimKktSection() {
                   <div
                     key={a.nim}
                     className={
-                      idx === 2
-                        ? 'col-span-2 sm:col-span-1 max-w-sm mx-auto sm:max-w-none w-full'
+                      idx === 0
+                        ? 'col-span-2 flex justify-center sm:col-span-1 sm:block'
                         : ''
                     }
                   >
-                    <AnggotaCard anggota={a} isInti />
+                    <div
+                      className={
+                        idx === 0
+                          ? 'w-[calc(50%-0.375rem)] sm:w-full h-full'
+                          : 'w-full h-full'
+                      }
+                    >
+                      <AnggotaCard anggota={a} isInti />
+                    </div>
                   </div>
                 ))}
               </div>
@@ -115,8 +123,25 @@ export default function TimKktSection() {
 
                 {/* Grid Anggota Bidang */}
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
-                  {kel.anggota.map((a) => (
-                    <AnggotaCard key={a.nim} anggota={a} />
+                  {kel.anggota.map((a, idx) => (
+                    <div
+                      key={a.nim}
+                      className={
+                        kel.anggota.length === 3 && idx === 0
+                          ? 'col-span-2 flex justify-center sm:col-span-1 sm:block'
+                          : ''
+                      }
+                    >
+                      <div
+                        className={
+                          kel.anggota.length === 3 && idx === 0
+                            ? 'w-[calc(50%-0.375rem)] sm:w-full h-full'
+                            : 'w-full h-full'
+                        }
+                      >
+                        <AnggotaCard key={a.nim} anggota={a} />
+                      </div>
+                    </div>
                   ))}
                 </div>
               </div>

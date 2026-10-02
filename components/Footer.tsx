@@ -52,7 +52,7 @@ export default function Footer() {
 
         <div className="mt-8 border-t border-white/10 pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#a5d0b9]">
           <p>
-            © {new Date().getFullYear()} Website profil kelurahan ini dibuat untuk program kerja KKT 149 Kumelembuay Unsrat.
+            © {new Date().getFullYear()} Program kerja KKT 149 Kumelembuay Unsrat.
           </p>
           {timKkt.instagram && (
             <a

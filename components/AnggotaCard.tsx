@@ -12,9 +12,12 @@ export default function AnggotaCard({ anggota, isInti = false }: AnggotaCardProp
     anggota.jabatan.toLowerCase().includes('sekretaris') ||
     anggota.jabatan.toLowerCase().includes('bendahara');
 
+  const isKoordinatorPosko =
+    anggota.jabatan.toLowerCase().includes('koordinator posko');
+
   return (
     <div
-      className={`rounded-2xl border border-[#C1C8C2] bg-white p-3.5 sm:p-4 shadow-sm hover:shadow-md transition-all flex flex-col justify-between ${
+      className={`rounded-2xl border border-[#C1C8C2] bg-white p-3.5 sm:p-4 shadow-sm hover:shadow-md transition-all flex flex-col justify-between h-full ${
         isInti ? 'ring-1 ring-[#1B4332]/15 sm:p-5' : ''
       }`}
     >
@@ -55,7 +58,9 @@ export default function AnggotaCard({ anggota, isInti = false }: AnggotaCardProp
         <div className="mb-2">
           <span
             className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] sm:text-xs font-semibold tracking-wide ${
-              isLeader
+              isKoordinatorPosko
+                ? 'bg-[#1B4332] text-white border border-[#1B4332]'
+                : isLeader
                 ? 'bg-[#1B4332]/10 text-[#1B4332] border border-[#1B4332]/25'
                 : 'bg-[#BC6C25]/10 text-[#BC6C25] border border-[#BC6C25]/25'
             }`}
