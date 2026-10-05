@@ -226,15 +226,27 @@ export default function BerandaPage() {
       {/* Sambutan Lurah */}
       <section className="bg-[#F3EFE6] px-4 py-14 sm:px-6">
         <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 text-center sm:flex-row sm:text-left">
-          {/* TODO: ganti div di bawah dengan foto Lurah menggunakan next/image */}
-          <div className="h-28 w-28 shrink-0 rounded-full bg-[#c1c8c2]" />
+          <div className="relative h-28 w-28 shrink-0 overflow-hidden rounded-full border-2 border-white ring-2 ring-[#1B4332]/25 shadow-md">
+            <Image
+              src="/images/pemerintahan/lurah.jpg"
+              alt={`Foto ${site.narasiLurah?.nama ?? 'Lurah Kumelembuay'}`}
+              fill
+              sizes="112px"
+              className="object-cover"
+            />
+          </div>
           <div>
             <h3 className="text-lg font-bold text-[#1B4332]">Sambutan Lurah</h3>
             <p className="mt-2 text-sm text-[#414844] leading-relaxed">{site.sambutanLurah}</p>
             {site.narasiLurah?.nama && (
-              <p className="mt-3 text-sm font-semibold text-[#1B4332]">
-                — {site.narasiLurah.nama}
-              </p>
+              <div className="mt-3">
+                <p className="text-sm font-bold text-[#1B4332]">
+                  — {site.narasiLurah.nama}
+                </p>
+                <p className="text-xs text-[#717774] font-medium">
+                  {site.narasiLurah.jabatan}
+                </p>
+              </div>
             )}
           </div>
         </div>

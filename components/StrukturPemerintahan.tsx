@@ -128,7 +128,7 @@ export default function StrukturPemerintahan() {
                 <Avatar
                   foto={lurah.foto}
                   nama={lurah.nama}
-                  size="md"
+                  size="lg"
                   ringColor="ring-[#1B4332]/25"
                 />
 
@@ -139,6 +139,12 @@ export default function StrukturPemerintahan() {
                 <h3 className="mt-2 text-lg sm:text-xl font-bold text-[#1C1C18] leading-snug">
                   {lurah.nama}
                 </h3>
+
+                {lurah.nip && (
+                  <p className="mt-1 text-xs text-[#717774] font-medium tracking-wide">
+                    NIP. {lurah.nip}
+                  </p>
+                )}
 
                 <p className="mt-1 text-xs sm:text-sm text-[#414844]">
                   {getDeskripsiJabatan(lurah.jabatan)}

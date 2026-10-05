@@ -1,6 +1,7 @@
 export type PejabatInti = {
   nama: string;
   jabatan: string;
+  nip?: string;
   foto?: string;
 };
 
@@ -11,7 +12,12 @@ export type Lingkungan = {
 };
 
 export const pejabatInti: PejabatInti[] = [
-  { nama: "Audi Pangemanan, S.Kep.", jabatan: "Lurah" },
+  {
+    nama: "Audi Pangemanan, S.Kep.",
+    jabatan: "Lurah",
+    nip: "197408011994031004",
+    foto: "/images/pemerintahan/lurah.jpg",
+  },
   { nama: "Franly Y. Kaunang, SST.", jabatan: "Sekretaris" },
   { nama: "Fredy N. H. Paat", jabatan: "Kepala Seksi Kesejahteraan" },
   { nama: "Jefry Pangemanan, AMK.", jabatan: "Staf" },

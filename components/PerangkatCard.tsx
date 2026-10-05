@@ -51,6 +51,11 @@ export default function PerangkatCard({ pejabat, isLurah = false }: PerangkatCar
         <p className={`font-semibold leading-snug ${isLurah ? 'text-[#1B4332] text-base' : 'text-[#1C1C18] text-sm'}`}>
           {nama}
         </p>
+        {pejabat.nip && (
+          <p className="text-xs text-[#717774] font-medium tracking-wide">
+            NIP. {pejabat.nip}
+          </p>
+        )}
         <p className={`mt-0.5 ${isLurah ? 'text-sm font-medium text-[#BC6C25]' : 'text-xs text-[#414844]'}`}>
           {jabatan}
         </p>

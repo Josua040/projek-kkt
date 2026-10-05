@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { site } from '@/data/site';
 import StrukturPemerintahan from '@/components/StrukturPemerintahan';
 
@@ -136,9 +137,20 @@ export default function ProfilPage() {
                   <p key={idx}>{p}</p>
                 ))}
               </div>
-              <div className="pt-4 border-t border-[#C1C8C2]">
-                <p className="font-bold text-[#1B4332] text-base">{site.narasiLurah.nama}</p>
-                <p className="text-xs sm:text-sm text-[#414844]">{site.narasiLurah.jabatan}</p>
+              <div className="pt-4 border-t border-[#C1C8C2] flex items-center gap-3.5">
+                <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full border border-white ring-2 ring-[#1B4332]/20 shadow-xs">
+                  <Image
+                    src="/images/pemerintahan/lurah.jpg"
+                    alt={`Foto ${site.narasiLurah.nama}`}
+                    fill
+                    sizes="48px"
+                    className="object-cover"
+                  />
+                </div>
+                <div>
+                  <p className="font-bold text-[#1B4332] text-base leading-tight">{site.narasiLurah.nama}</p>
+                  <p className="text-xs sm:text-sm text-[#414844]">{site.narasiLurah.jabatan}</p>
+                </div>
               </div>
             </div>
           ) : (
