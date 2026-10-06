@@ -59,5 +59,5 @@ export const site = {
   },
 
   jamKantor: "Senin – Jumat (08.00 – 16.00)",
-  koordinat: [1.3306, 124.8722] as [number, number], // perkiraan; TODO ganti presisi
+  koordinat: [1.348987, 124.885827] as [number, number],
 };

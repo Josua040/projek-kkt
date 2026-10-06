@@ -341,8 +341,8 @@ export const translations = {
     dataMenyusul: { id: 'Data menyusul', en: 'Data to be updated' },
     btnMaps: { id: 'Buka di Google Maps', en: 'Open in Google Maps' },
     koordinatLabel: {
-      id: 'Koordinat: 1.3306, 124.8722 (perkiraan belum diverifikasi presisi)',
-      en: 'Coordinates: 1.3306, 124.8722 (approximate, unverified)',
+      id: 'Koordinat: 1.348987, 124.885827',
+      en: 'Coordinates: 1.348987, 124.885827',
     },
   },
 };

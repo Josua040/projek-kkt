@@ -28,9 +28,7 @@ interface VillageMapProps {
 }
 
 export default function VillageMap({
-  // TODO: ganti dengan koordinat presisi Kelurahan Kumelembuay
-  // (klik kanan di Google Maps → salin koordinat)
-  center = [1.3306, 124.8722],
+  center = [1.348987, 124.885827],
   zoom = 14,
   villageName = 'Kumelembuay',
   subtitle = 'Kecamatan Tomohon Timur, Kota Tomohon',
