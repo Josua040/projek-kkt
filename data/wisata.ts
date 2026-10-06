@@ -6,6 +6,8 @@ export type Wisata = {
   deskripsiSingkat: string;
   deskripsiLengkap?: string;
   lokasi?: string;
+  mapsUrl?: string;
+  highlights?: string[];
 };
 
 export const wisata: Wisata[] = [
@@ -13,6 +15,10 @@ export const wisata: Wisata[] = [
     id: "puncak-tetetana",
     nama: "Puncak Tetetana",
     kategori: "Wisata Alam",
+    foto: "/images/wisata/tetetana.jpg",
+    lokasi: "Kelurahan Kumelembuay, Tomohon Timur",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Puncak+Tetetana+Tomohon",
+    highlights: ["Panorama Gunung Klabat", "Momen Sunset Emas", "Taman Bunga Terbuka"],
     deskripsiSingkat:
       "Panorama dari ketinggian dengan pemandangan Gunung Klabat dan momen matahari terbenam.",
     deskripsiLengkap:
@@ -22,6 +28,10 @@ export const wisata: Wisata[] = [
     id: "puncak-melbyls",
     nama: "Puncak Melby'Ls",
     kategori: "Wisata Alam",
+    foto: "/images/wisata/melbyls.jpg",
+    lokasi: "Kelurahan Kumelembuay, Tomohon Timur",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Puncak+Melbyls+Tomohon",
+    highlights: ["Panorama Perbukitan Hijau", "Udara Pegunungan Sejuk", "Spot Fotografi Lanskap"],
     deskripsiSingkat:
       "Panorama perbukitan dengan suasana terbuka, udara sejuk, dan spot foto lanskap.",
     deskripsiLengkap:
@@ -31,6 +41,10 @@ export const wisata: Wisata[] = [
     id: "tuur-maasering",
     nama: "Tuur Ma'asering",
     kategori: "Budaya",
+    foto: "/images/wisata/tuur-maasering.jpg",
+    lokasi: "Kelurahan Kumelembuay, Tomohon Timur",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Tuur+Maasering+Tomohon",
+    highlights: ["Kawasan Hutan Aren", "Penyulingan Tradisional Cap Tikus & Saguer", "Arsitektur Kayu-Bambu Alami"],
     deskripsiSingkat:
       "Wisata budaya aren: pengolahan air nira menjadi saguer dan Cap Tikus di tengah pondok kayu-bambu.",
     deskripsiLengkap:

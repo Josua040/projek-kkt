@@ -241,13 +241,31 @@ export const translations = {
       id: 'Kelurahan Kumelembuay menyimpan berbagai potensi wisata alam yang menakjubkan. Klik kartu wisata untuk melihat informasi lebih lengkap.',
       en: 'Kumelembuay Village is blessed with stunning ecotourism and rich cultural heritage. Click any destination card to view detailed visitor information.',
     },
+    badge: { id: 'Destinasi Unggulan', en: 'Featured Destinations' },
+    selectPrompt: {
+      id: 'Pilih salah satu destinasi di bawah untuk membuka eksplorasi interaktif.',
+      en: 'Select any destination below to open the interactive showcase.',
+    },
+    activeBadge: { id: 'Sedang Ditampilkan', en: 'Currently Viewing' },
+    btnExplore: { id: 'Buka Eksplorasi', en: 'Explore Details' },
+    btnCollapse: { id: 'Sembunyikan Rincian', en: 'Hide Details' },
+    btnMaps: { id: 'Buka di Google Maps', en: 'Open in Google Maps' },
+    highlightTitle: { id: 'Daya Tarik & Karakter Wisata', en: 'Key Highlights & Features' },
+    btnPrev: { id: 'Sebelumnya', en: 'Previous' },
+    btnNext: { id: 'Berikutnya', en: 'Next' },
+    lokasiLabel: { id: 'Lokasi Destinasi', en: 'Destination Location' },
     ariaCard: { id: 'Lihat detail', en: 'View details for' },
-    ariaClose: { id: 'Tutup popup', en: 'Close modal' },
+    ariaClose: { id: 'Tutup tampilan', en: 'Close view' },
     items: [
       {
         id: 'puncak-tetetana',
         nama: { id: 'Puncak Tetetana', en: 'Tetetana Peak' },
         kategori: { id: 'Wisata Alam', en: 'Nature Tourism' },
+        highlights: [
+          { id: 'Panorama Gunung Klabat', en: 'Mount Klabat Panorama' },
+          { id: 'Momen Sunset Emas', en: 'Golden Hour Sunset' },
+          { id: 'Taman Bunga Terbuka', en: 'Open Flower Garden' },
+        ],
         deskripsiSingkat: {
           id: 'Panorama dari ketinggian dengan pemandangan Gunung Klabat dan momen matahari terbenam.',
           en: 'Elevated panorama with scenic vistas of Mount Klabat and breathtaking sunset moments.',
@@ -261,6 +279,11 @@ export const translations = {
         id: 'puncak-melbyls',
         nama: { id: "Puncak Melby'Ls", en: "Melby'Ls Peak" },
         kategori: { id: 'Wisata Alam', en: 'Nature Tourism' },
+        highlights: [
+          { id: 'Panorama Perbukitan Hijau', en: 'Rolling Green Hills' },
+          { id: 'Udara Pegunungan Sejuk', en: 'Crisp Mountain Breeze' },
+          { id: 'Spot Fotografi Lanskap', en: 'Scenic Photo Vantage' },
+        ],
         deskripsiSingkat: {
           id: 'Panorama perbukitan dengan suasana terbuka, udara sejuk, dan spot foto lanskap.',
           en: 'Rolling highland hills, crisp mountain air, open vistas, and picturesque photo spots.',
@@ -274,6 +297,11 @@ export const translations = {
         id: 'tuur-maasering',
         nama: { id: "Tuur Ma'asering", en: "Tuur Ma'asering" },
         kategori: { id: 'Budaya', en: 'Cultural Tourism' },
+        highlights: [
+          { id: 'Kawasan Hutan Aren', en: 'Sugar Palm Forest' },
+          { id: 'Pembuatan Cap Tikus & Saguer', en: 'Artisanal Saguer & Cap Tikus' },
+          { id: 'Arsitektur Kayu-Bambu Alami', en: 'Rustic Wood & Bamboo Setting' },
+        ],
         deskripsiSingkat: {
           id: 'Wisata budaya aren: pengolahan air nira menjadi saguer dan Cap Tikus di tengah pondok kayu-bambu.',
           en: 'Sugar palm cultural experience: authentic palm sap extraction into saguer & Cap Tikus amid rustic bamboo architecture.',
