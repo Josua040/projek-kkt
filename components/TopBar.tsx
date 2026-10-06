@@ -1,10 +1,14 @@
-import { site } from '@/data/site';
+'use client';
 
-// TopBar adalah server component — tidak perlu 'use client'
+import { site } from '@/data/site';
+import { useLanguage } from '@/context/LanguageContext';
+import { translations } from '@/data/translations';
+
 export default function TopBar() {
-  const jam = site.jamKantor ?? 'Menyusul';
-  const telp = site.kontak.telepon ?? 'Menyusul';
-  const alamat = site.kontak.alamat ?? 'Menyusul';
+  const { lang } = useLanguage();
+  const jam = site.jamKantor ? translations.topbar.jamKantor[lang] : translations.topbar.menyusul[lang];
+  const telp = site.kontak.telepon ?? translations.topbar.menyusul[lang];
+  const alamat = site.kontak.alamat ? translations.topbar.alamat[lang] : translations.topbar.menyusul[lang];
 
   return (
     <div className="bg-[#1B4332] text-white">

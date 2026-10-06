@@ -1,6 +1,10 @@
+'use client';
+
 import Image from 'next/image';
 import { pejabatInti, lingkungan } from '@/data/pemerintahan';
 import { site } from '@/data/site';
+import { useLanguage } from '@/context/LanguageContext';
+import { translations } from '@/data/translations';
 
 // ---------------------------------------------------------------------------
 // Helper: Avatar dengan fallback placeholder
@@ -54,29 +58,42 @@ function Avatar({
 }
 
 // ---------------------------------------------------------------------------
-// Helper: Menentukan deskripsi tugas pejabat berdasarkan jabatan
+// Helper: Menentukan deskripsi tugas pejabat berdasarkan jabatan & bahasa
 // ---------------------------------------------------------------------------
-function getDeskripsiJabatan(jabatan: string): string {
+function getDeskripsiJabatan(jabatan: string, lang: 'id' | 'en'): string {
   const j = jabatan.toLowerCase();
+  const d = translations.struktur.descriptions;
   if (j.includes('lurah')) {
-    return 'Penanggung Jawab Umum Pemerintahan Kelurahan';
+    return d.lurah[lang];
   }
   if (j.includes('sekretaris')) {
-    return 'Koordinator Administrasi, Keuangan & Pelayanan';
+    return d.sekretaris[lang];
   }
   if (j.includes('kesejahteraan')) {
-    return 'Bantuan Sosial, Kesehatan & Kesejahteraan Warga';
+    return d.kesejahteraan[lang];
   }
   if (j.includes('staf')) {
-    return 'Pelaksana Teknis & Administrasi Kelurahan';
+    return d.staf[lang];
   }
   if (j.includes('pemerintahan') || j.includes('trantib')) {
-    return 'Pemerintahan, Trantib & Pelayanan Wilayah';
+    return lang === 'id' ? 'Pemerintahan, Trantib & Pelayanan Wilayah' : 'Governance, Public Order & Community Services';
   }
-  return 'Aparatur Pemerintahan Kelurahan';
+  return lang === 'id' ? 'Aparatur Pemerintahan Kelurahan' : 'Village Administration Official';
+}
+
+function getNamaJabatan(jabatan: string, lang: 'id' | 'en'): string {
+  const r = translations.struktur.roles;
+  if (jabatan === 'Lurah') return r.Lurah[lang];
+  if (jabatan === 'Sekretaris') return r.Sekretaris[lang];
+  if (jabatan === 'Kepala Seksi Kesejahteraan') return r['Kepala Seksi Kesejahteraan'][lang];
+  if (jabatan === 'Staf') return r.Staf[lang];
+  return jabatan;
 }
 
 export default function StrukturPemerintahan() {
+  const { lang } = useLanguage();
+  const t = translations.struktur;
+
   const lurah =
     pejabatInti.find((p) => p.jabatan.toLowerCase().includes('lurah')) ||
     pejabatInti[0];
@@ -93,25 +110,24 @@ export default function StrukturPemerintahan() {
 
   return (
     <div className="w-full space-y-8">
-      {/* ── Header Struktur (persis seperti referensi) ────────────────── */}
+      {/* ── Header Struktur ────────────────────────────────────────── */}
       <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 pb-2 border-b border-[#C1C8C2]/60">
         <div>
           <p className="text-xs font-bold uppercase tracking-widest text-[#BC6C25] mb-1">
-            Struktur Pemerintahan
+            {t.badgeTitle[lang]}
           </p>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1B4332] leading-tight">
-            Pemerintah &amp; Perangkat Kelurahan
+            {t.heading[lang]}
           </h2>
           <p className="mt-1 text-sm text-[#414844] max-w-2xl leading-relaxed">
-            Aparatur kelurahan berintegritas tinggi yang mengemban mandat
-            pelayanan masyarakat dan tata kelola pemerintahan {site.nama}.
+            {t.desc[lang]}
           </p>
         </div>
 
         {/* Status chip */}
         <div className="inline-flex items-center gap-2 self-start sm:self-auto rounded-full bg-[#2D6A4F]/10 border border-[#2D6A4F]/25 px-3.5 py-1.5 text-xs font-semibold text-[#1B4332] whitespace-nowrap shadow-xs">
           <span className="h-2 w-2 rounded-full bg-[#2D6A4F] animate-pulse" />
-          <span>Aparatur Aktif Melayani</span>
+          <span>{t.badgeAktif[lang]}</span>
         </div>
       </div>
 
@@ -133,7 +149,7 @@ export default function StrukturPemerintahan() {
                 />
 
                 <span className="mt-3 inline-flex items-center rounded-full bg-[#1B4332] px-4 py-1 text-xs font-bold uppercase tracking-wider text-white shadow-xs">
-                  {lurah.jabatan}
+                  {getNamaJabatan(lurah.jabatan, lang)}
                 </span>
 
                 <h3 className="mt-2 text-lg sm:text-xl font-bold text-[#1C1C18] leading-snug">
@@ -147,7 +163,7 @@ export default function StrukturPemerintahan() {
                 )}
 
                 <p className="mt-1 text-xs sm:text-sm text-[#414844]">
-                  {getDeskripsiJabatan(lurah.jabatan)}
+                  {getDeskripsiJabatan(lurah.jabatan, lang)}
                 </p>
 
                 {/* Footer informasi kartu */}
@@ -166,7 +182,7 @@ export default function StrukturPemerintahan() {
                     >
                       <path d="M3 21h18M3 7v14M21 7v14M6 11h2M6 15h2M11 11h2M11 15h2M16 11h2M16 15h2M9 21v-4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v4M3 7l9-4 9 4" />
                     </svg>
-                    Kantor Kelurahan
+                    {t.kantorKelurahan[lang]}
                   </span>
                   <span className="flex items-center gap-1 text-[#2D6A4F] font-semibold">
                     <svg
@@ -182,7 +198,7 @@ export default function StrukturPemerintahan() {
                         clipRule="evenodd"
                       />
                     </svg>
-                    Aktif
+                    {t.statusAktif[lang]}
                   </span>
                 </div>
               </div>
@@ -209,7 +225,7 @@ export default function StrukturPemerintahan() {
                 />
 
                 <span className="mt-3 inline-flex items-center rounded-full bg-[#BC6C25]/15 text-[#BC6C25] px-4 py-1 text-xs font-bold uppercase tracking-wider shadow-xs">
-                  {sekretaris.jabatan} Kelurahan
+                  {getNamaJabatan(sekretaris.jabatan, lang)} {lang === 'id' ? 'Kelurahan' : ''}
                 </span>
 
                 <h3 className="mt-2 text-base sm:text-lg font-bold text-[#1C1C18] leading-snug">
@@ -217,7 +233,7 @@ export default function StrukturPemerintahan() {
                 </h3>
 
                 <p className="mt-1 text-xs sm:text-sm text-[#414844]">
-                  {getDeskripsiJabatan(sekretaris.jabatan)}
+                  {getDeskripsiJabatan(sekretaris.jabatan, lang)}
                 </p>
 
                 {/* Footer informasi kartu */}
@@ -237,7 +253,7 @@ export default function StrukturPemerintahan() {
                       <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                       <polyline points="22,6 12,13 2,6" />
                     </svg>
-                    Sekretariat Kelurahan
+                    {t.sekretariatKelurahan[lang]}
                   </span>
                   <span className="flex items-center gap-1 text-[#2D6A4F] font-semibold">
                     <svg
@@ -253,7 +269,7 @@ export default function StrukturPemerintahan() {
                         clipRule="evenodd"
                       />
                     </svg>
-                    Aktif
+                    {t.statusAktif[lang]}
                   </span>
                 </div>
               </div>
@@ -276,7 +292,7 @@ export default function StrukturPemerintahan() {
               </div>
               <div className="relative bg-[#F3EFE6] px-4">
                 <span className="inline-block text-[11px] sm:text-xs font-bold uppercase tracking-widest text-[#414844] bg-[#FAF7F2] border border-[#C1C8C2] rounded-full px-4 py-1">
-                  Pelaksana Teknis &amp; Tata Usaha
+                  {t.pelaksanaTitle[lang]}
                 </span>
               </div>
             </div>
@@ -319,7 +335,7 @@ export default function StrukturPemerintahan() {
                             : 'bg-[#1B4332]/10 text-[#1B4332]'
                         }`}
                       >
-                        {p.jabatan}
+                        {getNamaJabatan(p.jabatan, lang)}
                       </span>
 
                       <h4 className="mt-2 text-base font-bold text-[#1C1C18] leading-snug">
@@ -327,7 +343,7 @@ export default function StrukturPemerintahan() {
                       </h4>
 
                       <p className="mt-1 text-xs text-[#414844] leading-relaxed">
-                        {getDeskripsiJabatan(p.jabatan)}
+                        {getDeskripsiJabatan(p.jabatan, lang)}
                       </p>
 
                       <div className="mt-4 pt-3 border-t border-[#E5E7EB] w-full flex items-center justify-center text-xs text-[#414844]">
@@ -345,7 +361,7 @@ export default function StrukturPemerintahan() {
                               clipRule="evenodd"
                             />
                           </svg>
-                          Aktif Melayani
+                          {t.aktifMelayani[lang]}
                         </span>
                       </div>
                     </div>
@@ -362,13 +378,13 @@ export default function StrukturPemerintahan() {
         <div className="pt-10 border-t border-[#C1C8C2]/60 space-y-6">
           <div>
             <p className="text-xs font-bold uppercase tracking-widest text-[#BC6C25] mb-1">
-              Wilayah &amp; Kemasyarakatan
+              {t.wilayahTitle[lang]}
             </p>
             <h3 className="text-xl sm:text-2xl font-bold text-[#1B4332]">
-              Kepala &amp; Wakil Kepala Lingkungan
+              {t.kepalaLingkunganTitle[lang]}
             </h3>
             <p className="mt-1 text-sm text-[#414844]">
-              Aparatur pelayanan masyarakat pada 7 lingkungan di Kelurahan {site.nama}.
+              {t.kepalaLingkunganDesc[lang]}
             </p>
           </div>
 
@@ -382,22 +398,22 @@ export default function StrukturPemerintahan() {
                 <div>
                   <div className="flex items-center justify-between mb-3">
                     <span className="inline-flex items-center rounded-full bg-[#1B4332]/10 px-3 py-0.5 text-xs font-bold text-[#1B4332]">
-                      {l.nama}
+                      {lang === 'id' ? l.nama : l.nama.replace('Lingkungan', 'Neighborhood')}
                     </span>
                     <span className="text-[11px] font-semibold text-[#BC6C25]">
-                      Wilayah
+                      {t.badgeWilayah[lang]}
                     </span>
                   </div>
                   <div className="space-y-1.5 text-sm">
                     <p className="flex items-start gap-2">
                       <span className="font-semibold text-[#1C1C18] min-w-[55px]">
-                        Kepala:
+                        {t.labelKepala[lang]}
                       </span>
                       <span className="text-[#414844] font-medium">{l.kepala}</span>
                     </p>
                     <p className="flex items-start gap-2">
                       <span className="font-semibold text-[#1C1C18] min-w-[55px]">
-                        Wakil:
+                        {t.labelWakil[lang]}
                       </span>
                       <span className="text-[#414844]">{l.wakil}</span>
                     </p>

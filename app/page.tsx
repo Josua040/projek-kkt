@@ -1,27 +1,15 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { site } from '@/data/site';
-
-
-const highlights = [
-  {
-    href: '/profil',
-    title: 'Profil Kelurahan',
-    desc: 'Sejarah, visi-misi, dan struktur pemerintahan Kelurahan Kumelembuay.',
-  },
-  {
-    href: '/potensi',
-    title: 'Potensi Wisata',
-    desc: 'Tempat-tempat wisata unggulan di Kelurahan Kumelembuay.',
-  },
-  {
-    href: '/kontak',
-    title: 'Kontak',
-    desc: 'Alamat, nomor telepon, dan lokasi Kantor Kelurahan Kumelembuay.',
-  },
-];
+import { useLanguage } from '@/context/LanguageContext';
+import { translations } from '@/data/translations';
 
 export default function BerandaPage() {
+  const { lang } = useLanguage();
+  const t = translations.beranda;
+
   return (
     <main>
       {/* Hero */}
@@ -55,24 +43,23 @@ export default function BerandaPage() {
           <div className="max-w-xl text-left">
             <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-xs border border-white/20 px-3.5 py-1 text-xs font-semibold text-[#C1ECD4]">
               <span className="h-2 w-2 rounded-full bg-[#A5D0B9] animate-pulse" />
-              <span>Selamat Datang di Portal Resmi</span>
+              <span>{t.badge[lang]}</span>
             </div>
             <p className="mb-2 text-xs sm:text-sm font-semibold uppercase tracking-wide text-[#a5d0b9]">
-              Kecamatan Tomohon Timur · Kota Tomohon
+              {t.wilayahSub[lang]}
             </p>
             <h1 className="text-3xl font-extrabold leading-tight sm:text-5xl">
-              Mengenal Lebih Dekat Kelurahan Kumelembuay
+              {t.heroTitle[lang]}
             </h1>
             <p className="mt-4 text-sm sm:text-base text-[#c1ecd4] leading-relaxed">
-              Profil dan potensi wisata Kelurahan Kumelembuay dari lereng Gunung
-              Mahawu untuk warga dan pengunjung.
+              {t.heroDesc[lang]}
             </p>
             <div className="mt-7 flex flex-wrap items-center gap-3">
               <Link
                 href="/potensi"
                 className="inline-flex items-center gap-2 rounded-full bg-[#BC6C25] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#D4A373] shadow-sm"
               >
-                <span>Jelajahi Potensi</span>
+                <span>{t.btnPotensi[lang]}</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
@@ -91,14 +78,14 @@ export default function BerandaPage() {
                 href="/profil"
                 className="inline-flex items-center gap-2 rounded-full bg-white/15 backdrop-blur-xs border border-white/25 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white hover:text-[#1B4332]"
               >
-                <span>Lihat Profil Kelurahan</span>
+                <span>{t.btnProfil[lang]}</span>
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Statistik ringkas — Floating Bar terpadu persis seperti gambar referensi */}
+      {/* Statistik ringkas — Floating Bar */}
       <section className="relative z-20 -mt-8 sm:-mt-12 lg:-mt-14 mx-auto max-w-6xl px-4 sm:px-6">
         <div className="rounded-2xl sm:rounded-3xl border border-gray-100 bg-white p-5 sm:p-7 shadow-[0_12px_36px_rgba(0,0,0,0.08)]">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
@@ -121,10 +108,10 @@ export default function BerandaPage() {
               </div>
               <div className="min-w-0">
                 <p className="text-2xl sm:text-3xl lg:text-[32px] font-black text-[#111827] leading-none tracking-tight">
-                  {site.dataPenduduk.jumlahJiwa.toLocaleString('id-ID')}
+                  {site.dataPenduduk.jumlahJiwa.toLocaleString(lang === 'id' ? 'id-ID' : 'en-US')}
                 </p>
                 <p className="mt-1.5 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#64748B]">
-                  Jiwa Penduduk
+                  {t.statPenduduk[lang]}
                 </p>
               </div>
             </div>
@@ -148,7 +135,7 @@ export default function BerandaPage() {
                   330
                 </p>
                 <p className="mt-1.5 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#64748B]">
-                  Hektar Wilayah
+                  {t.statWilayah[lang]}
                 </p>
               </div>
             </div>
@@ -171,7 +158,7 @@ export default function BerandaPage() {
                   {site.tahunDesa}
                 </p>
                 <p className="mt-1.5 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#64748B]">
-                  Tahun Berdiri
+                  {t.statTahun[lang]}
                 </p>
               </div>
             </div>
@@ -194,7 +181,7 @@ export default function BerandaPage() {
                   75%
                 </p>
                 <p className="mt-1.5 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#64748B]">
-                  Petani &amp; Agraris
+                  {t.statMataPencaharian[lang]}
                 </p>
               </div>
             </div>
@@ -205,19 +192,19 @@ export default function BerandaPage() {
       {/* Kartu jelajah */}
       <section className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
         <h2 className="mb-6 text-2xl font-bold text-[#1B4332]">
-          Jelajahi Kumelembuay
+          {t.jelajahTitle[lang]}
         </h2>
         <div className="grid gap-6 sm:grid-cols-3">
-          {highlights.map((h) => (
+          {t.jelajahCards.map((h) => (
             <Link
               key={h.href}
               href={h.href}
               className="rounded-2xl border border-[#c1c8c2] bg-white p-6 shadow-sm transition hover:shadow-md"
             >
               <h3 className="mb-2 text-lg font-bold text-[#1B4332]">
-                {h.title}
+                {h.title[lang]}
               </h3>
-              <p className="text-sm text-[#414844]">{h.desc}</p>
+              <p className="text-sm text-[#414844]">{h.desc[lang]}</p>
             </Link>
           ))}
         </div>
@@ -236,15 +223,15 @@ export default function BerandaPage() {
             />
           </div>
           <div>
-            <h3 className="text-lg font-bold text-[#1B4332]">Sambutan Lurah</h3>
-            <p className="mt-2 text-sm text-[#414844] leading-relaxed">{site.sambutanLurah}</p>
+            <h3 className="text-lg font-bold text-[#1B4332]">{t.sambutanTitle[lang]}</h3>
+            <p className="mt-2 text-sm text-[#414844] leading-relaxed">{t.sambutanText[lang]}</p>
             {site.narasiLurah?.nama && (
               <div className="mt-3">
                 <p className="text-sm font-bold text-[#1B4332]">
                   — {site.narasiLurah.nama}
                 </p>
                 <p className="text-xs text-[#717774] font-medium">
-                  {site.narasiLurah.jabatan}
+                  {t.lurahJabatan[lang]}
                 </p>
               </div>
             )}

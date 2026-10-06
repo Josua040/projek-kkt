@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import type { Wisata } from '@/data/wisata';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface WisataModalProps {
   wisata: Wisata;
@@ -13,6 +14,7 @@ export default function WisataModal({ wisata, onClose }: WisataModalProps) {
   const overlayRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
+  const { lang } = useLanguage();
 
   // Kunci scroll halaman di belakang
   useEffect(() => {
@@ -58,8 +60,8 @@ export default function WisataModal({ wisata, onClose }: WisataModalProps) {
         <button
           ref={closeBtnRef}
           onClick={onClose}
-          aria-label="Tutup popup"
-          className="absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-black/40 text-white transition hover:bg-black/60 focus:outline-none focus:ring-2 focus:ring-white"
+          aria-label={lang === 'id' ? 'Tutup popup' : 'Close modal'}
+          className="absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-black/40 text-white transition hover:bg-black/60 focus:outline-none focus:ring-2 focus:ring-white cursor-pointer"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

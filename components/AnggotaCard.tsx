@@ -1,5 +1,9 @@
+'use client';
+
 import Image from 'next/image';
 import type { AnggotaTim } from '@/data/tim-kkt';
+import { useLanguage } from '@/context/LanguageContext';
+import { translations } from '@/data/translations';
 
 interface AnggotaCardProps {
   anggota: AnggotaTim;
@@ -7,6 +11,9 @@ interface AnggotaCardProps {
 }
 
 export default function AnggotaCard({ anggota, isInti = false }: AnggotaCardProps) {
+  const { lang } = useLanguage();
+  const t = translations.tentang;
+
   const isLeader =
     anggota.jabatan.toLowerCase().includes('koordinator') ||
     anggota.jabatan.toLowerCase().includes('sekretaris') ||
@@ -14,6 +21,12 @@ export default function AnggotaCard({ anggota, isInti = false }: AnggotaCardProp
 
   const isKoordinatorPosko =
     anggota.jabatan.toLowerCase().includes('koordinator posko');
+
+  const getJabatanText = (jab: string) => {
+    if (lang === 'id') return jab;
+    const found = t.jabatan[jab as keyof typeof t.jabatan];
+    return found ? found.en : jab;
+  };
 
   return (
     <div
@@ -48,7 +61,7 @@ export default function AnggotaCard({ anggota, isInti = false }: AnggotaCardProp
                 />
               </svg>
               <span className="text-[10px] sm:text-xs text-[#8a9490] font-medium">
-                Foto menyusul
+                {t.fotoMenyusul[lang]}
               </span>
             </div>
           )}
@@ -65,7 +78,7 @@ export default function AnggotaCard({ anggota, isInti = false }: AnggotaCardProp
                 : 'bg-[#BC6C25]/10 text-[#BC6C25] border border-[#BC6C25]/25'
             }`}
           >
-            {anggota.jabatan}
+            {getJabatanText(anggota.jabatan)}
           </span>
         </div>
 

@@ -4,6 +4,8 @@ import { useState } from 'react';
 import Image from 'next/image';
 import type { Wisata } from '@/data/wisata';
 import WisataModal from './WisataModal';
+import { useLanguage } from '@/context/LanguageContext';
+import { translations } from '@/data/translations';
 
 // ---------------------------------------------------------------------------
 // Lookup kelas per posisi (index % 4) — ditulis lengkap agar Tailwind mengenali
@@ -42,25 +44,39 @@ const LG_SPAN: readonly string[] = [
   'lg:col-span-1 lg:row-span-1', // idx 3 — tengah bawah
 ];
 
-// ---------------------------------------------------------------------------
-
 interface WisataGridProps {
   items: Wisata[];
 }
 
 export default function WisataGrid({ items }: WisataGridProps) {
   const [selected, setSelected] = useState<Wisata | null>(null);
+  const { lang } = useLanguage();
 
-  if (items.length === 0) {
+  // Terjemahkan data wisata sesuai bahasa aktif
+  const localizedItems: Wisata[] = items.map((orig) => {
+    const tItem = translations.potensi.items.find((item) => item.id === orig.id);
+    if (!tItem) return orig;
+    return {
+      ...orig,
+      nama: tItem.nama[lang],
+      kategori: tItem.kategori[lang],
+      deskripsiSingkat: tItem.deskripsiSingkat[lang],
+      deskripsiLengkap: tItem.deskripsiLengkap[lang],
+    };
+  });
+
+  if (localizedItems.length === 0) {
     return (
       <p className="text-[#414844] italic text-sm sm:text-base">
-        Data wisata akan segera ditambahkan.
+        {lang === 'id'
+          ? 'Data wisata akan segera ditambahkan.'
+          : 'Tourism destination data will be updated soon.'}
       </p>
     );
   }
 
   // Jika kurang dari 4 entri, pakai grid rata biasa tanpa pola span
-  const useBento = items.length >= 4;
+  const useBento = localizedItems.length >= 4;
 
   return (
     <>
@@ -77,7 +93,7 @@ export default function WisataGrid({ items }: WisataGridProps) {
               'grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'
         }
       >
-        {items.map((item, idx) => {
+        {localizedItems.map((item, idx) => {
           const pos = idx % 4;
 
           // Kelas untuk wadah kartu (ukuran & span)
@@ -96,8 +112,8 @@ export default function WisataGrid({ items }: WisataGridProps) {
               <button
                 type="button"
                 onClick={() => setSelected(item)}
-                aria-label={`Lihat detail ${item.nama}`}
-                className="group relative h-full w-full overflow-hidden rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#1B4332] focus:ring-offset-2 transition-transform hover:-translate-y-1 hover:shadow-xl"
+                aria-label={`${lang === 'id' ? 'Lihat detail' : 'View details for'} ${item.nama}`}
+                className="group relative h-full w-full overflow-hidden rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#1B4332] focus:ring-offset-2 transition-transform hover:-translate-y-1 hover:shadow-xl cursor-pointer"
               >
                 {/* Gambar / placeholder — mengisi penuh kartu */}
                 <div className="absolute inset-0 bg-[#C1C8C2]">
