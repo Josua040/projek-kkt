@@ -9,6 +9,7 @@ export type Lingkungan = {
   nama: string;
   kepala: string;
   wakil: string;
+  koordinat?: [number, number];
 };
 
 export const pejabatInti: PejabatInti[] = [
@@ -24,11 +25,11 @@ export const pejabatInti: PejabatInti[] = [
 ];
 
 export const lingkungan: Lingkungan[] = [
-  { nama: "Lingkungan I", kepala: "Wilhelmus Kapoh", wakil: "Ferdi Pangemanan" },
-  { nama: "Lingkungan II", kepala: "Adri Solang", wakil: "Agus Pitoy" },
-  { nama: "Lingkungan III", kepala: "Lexi Maxi Runtuwalian", wakil: "Yan Frits Moningka" },
-  { nama: "Lingkungan IV", kepala: "Yoseph Pangemanan", wakil: "Junita Terok" },
-  { nama: "Lingkungan V", kepala: "Bennie Ponto", wakil: "Josep Aror" },
-  { nama: "Lingkungan VI", kepala: "Elsye Ratag", wakil: "Mykhael Muhonis" },
-  { nama: "Lingkungan VII", kepala: "Jeanne Mokoagouw", wakil: "Fence Victor Pitoy" },
+  { nama: "Lingkungan I", kepala: "Wilhelmus Kapoh", wakil: "Ferdi Pangemanan", koordinat: undefined }, // TODO: koordinat dari PWK/Lurah
+  { nama: "Lingkungan II", kepala: "Adri Solang", wakil: "Agus Pitoy", koordinat: undefined }, // TODO: koordinat dari PWK/Lurah
+  { nama: "Lingkungan III", kepala: "Lexi Maxi Runtuwalian", wakil: "Yan Frits Moningka", koordinat: undefined }, // TODO: koordinat dari PWK/Lurah
+  { nama: "Lingkungan IV", kepala: "Yoseph Pangemanan", wakil: "Junita Terok", koordinat: undefined }, // TODO: koordinat dari PWK/Lurah
+  { nama: "Lingkungan V", kepala: "Bennie Ponto", wakil: "Josep Aror", koordinat: undefined }, // TODO: koordinat dari PWK/Lurah
+  { nama: "Lingkungan VI", kepala: "Elsye Ratag", wakil: "Mykhael Muhonis", koordinat: undefined }, // TODO: koordinat dari PWK/Lurah
+  { nama: "Lingkungan VII", kepala: "Jeanne Mokoagouw", wakil: "Fence Victor Pitoy", koordinat: undefined }, // TODO: koordinat dari PWK/Lurah
 ];

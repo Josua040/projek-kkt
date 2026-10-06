@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useSyncExternalStore, useCallback } from 'react';
 
 export type Language = 'id' | 'en';
 
@@ -16,32 +16,53 @@ const LanguageContext = createContext<LanguageContextType>({
   toggleLang: () => {},
 });
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLangState] = useState<Language>('id');
+let currentLang: Language = 'id';
+const listeners = new Set<() => void>();
 
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem('kumelembuay_lang') as Language | null;
-      if (saved === 'id' || saved === 'en') {
-        setLangState(saved);
-      }
-    } catch {
-      // localStorage might fail in private browsing mode
+function notify() {
+  listeners.forEach((listener) => listener());
+}
+
+function subscribe(callback: () => void) {
+  listeners.add(callback);
+  return () => {
+    listeners.delete(callback);
+  };
+}
+
+function getSnapshot(): Language {
+  if (typeof window === 'undefined') return 'id';
+  try {
+    const saved = localStorage.getItem('kumelembuay_lang') as Language | null;
+    if (saved === 'id' || saved === 'en') {
+      currentLang = saved;
     }
-  }, []);
+  } catch {
+    // ignore
+  }
+  return currentLang;
+}
 
-  const setLang = (newLang: Language) => {
-    setLangState(newLang);
+function getServerSnapshot(): Language {
+  return 'id';
+}
+
+export function LanguageProvider({ children }: { children: React.ReactNode }) {
+  const lang = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+
+  const setLang = useCallback((newLang: Language) => {
+    currentLang = newLang;
     try {
       localStorage.setItem('kumelembuay_lang', newLang);
     } catch {
       // ignore
     }
-  };
+    notify();
+  }, []);
 
-  const toggleLang = () => {
-    setLang(lang === 'id' ? 'en' : 'id');
-  };
+  const toggleLang = useCallback(() => {
+    setLang(currentLang === 'id' ? 'en' : 'id');
+  }, [setLang]);
 
   return (
     <LanguageContext.Provider value={{ lang, setLang, toggleLang }}>

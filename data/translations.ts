@@ -333,6 +333,12 @@ export const translations = {
   kontak: {
     pageTitle: { id: 'Kontak', en: 'Contact' },
     sectionTitle: { id: 'Informasi Kontak & Lokasi', en: 'Contact Information & Location' },
+    infoTitle: { id: 'Informasi Kontak', en: 'Contact Information' },
+    mapTitle: { id: 'Peta Wilayah & Lokasi Kelurahan', en: 'Territory Map & Village Location' },
+    mapDesc: {
+      id: 'Jelajahi peta digital Kelurahan Kumelembuay dengan batas wilayah resmi, citra satelit, dan sudut pandang 3D.',
+      en: 'Explore the digital map of Kumelembuay Village featuring official boundaries, satellite imagery, and 3D terrain perspective.',
+    },
     jalan: { id: 'Jalan', en: 'Street' },
     alamat: { id: 'Alamat', en: 'Address' },
     telepon: { id: 'Telepon', en: 'Telephone' },

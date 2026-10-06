@@ -14,9 +14,8 @@ interface MapWrapperProps {
 export default function MapWrapper({ center, villageName, subtitle }: MapWrapperProps) {
   return (
     <div
-      // --map-height dikonsumsi oleh VillageMap; 300px HP, 420px desktop
-      style={{ '--map-height': '300px' } as React.CSSProperties}
-      className="[--map-height:300px] lg:[--map-height:420px]"
+      style={{ '--map-height': '420px' } as React.CSSProperties}
+      className="w-full [--map-height:420px] sm:[--map-height:500px] lg:[--map-height:580px]"
     >
       <VillageMap
         center={center}

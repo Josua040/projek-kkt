@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import { pejabatInti, lingkungan } from '@/data/pemerintahan';
-import { site } from '@/data/site';
 import { useLanguage } from '@/context/LanguageContext';
 import { translations } from '@/data/translations';
 
