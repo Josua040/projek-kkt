@@ -15,7 +15,7 @@ export const wisata: Wisata[] = [
     id: "puncak-tetetana",
     nama: "Puncak Tetetana",
     kategori: "Wisata Alam",
-    foto: "/images/wisata/tetetana.jpg",
+    foto: "/images/wisata/puncak-tetetana.jpg",
     lokasi: "Kelurahan Kumelembuay, Tomohon Timur",
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Puncak+Tetetana+Tomohon",
     highlights: ["Panorama Gunung Klabat", "Momen Sunset Emas", "Taman Bunga Terbuka"],
