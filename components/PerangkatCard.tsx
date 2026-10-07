@@ -25,6 +25,10 @@ export default function PerangkatCard({ pejabat, isLurah = false }: PerangkatCar
             fill
             sizes="96px"
             className="object-cover"
+            style={{
+              objectPosition: pejabat.fotoPosisi ?? 'center',
+              transform: pejabat.fotoTransform ?? undefined,
+            }}
           />
         ) : (
           /* Placeholder abu-abu dengan inisial */

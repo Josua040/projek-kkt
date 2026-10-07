@@ -3,6 +3,8 @@ export type PejabatInti = {
   jabatan: string;
   nip?: string;
   foto?: string;
+  fotoPosisi?: string;
+  fotoTransform?: string;
 };
 
 export type Lingkungan = {
@@ -19,9 +21,23 @@ export const pejabatInti: PejabatInti[] = [
     nip: "197408011994031004",
     foto: "/images/pemerintahan/lurah.jpg",
   },
-  { nama: "Franly Y. Kaunang, SST.", jabatan: "Sekretaris" },
-  { nama: "Fredy N. H. Paat", jabatan: "Kepala Seksi Kesejahteraan" },
-  { nama: "Jefry Pangemanan, AMK.", jabatan: "Staf" },
+  {
+    nama: "Franly Y. Kaunang, SST.",
+    jabatan: "Sekretaris",
+    foto: "/images/pemerintahan/franly-kaunang.jpg",
+  },
+  {
+    nama: "Fredy N. H. Paat",
+    jabatan: "Kepala Seksi Kesejahteraan",
+    foto: "/images/pemerintahan/fredy-paat.jpeg",
+    fotoPosisi: "center 15%",
+    fotoTransform: "translateY(5px) scale(0.95)",
+  },
+  {
+    nama: "Jefry Pangemanan, AMK.",
+    jabatan: "Staf",
+    foto: "/images/pemerintahan/jefry-pangemanan.jpeg",
+  },
 ];
 
 export const lingkungan: Lingkungan[] = [

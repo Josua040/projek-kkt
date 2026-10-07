@@ -286,88 +286,143 @@ export default function VillageMap({
         boxShadow: '0px 4px 16px -2px rgba(60, 40, 20, 0.08)',
       }}
     >
-      {/* ── Toolbar Kontrol Peta (Pojok Kiri Atas) ────────────────────────── */}
-      <div className="absolute top-3 left-3 z-10 flex flex-wrap items-center gap-1.5 sm:gap-2 select-none">
-        {/* Toggle Peta / Satelit */}
-        <div className="inline-flex rounded-full bg-white/95 p-0.5 sm:p-1 shadow-md border border-[#C1C8C2]/80 backdrop-blur-xs">
+      {/* ── Toolbar Kontrol Peta Terpadu (Unified Glassmorphism Dock) ────── */}
+      <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10 select-none max-w-[calc(100%-1.5rem)]">
+        <div className="inline-flex flex-wrap items-center gap-1 sm:gap-1.5 rounded-2xl bg-white/95 p-1 sm:p-1.5 shadow-[0_8px_24px_-4px_rgba(0,0,0,0.15)] border border-[#C1C8C2]/80 backdrop-blur-md">
+          {/* Segment 1: Toggle Mode Peta / Satelit */}
+          <div className="flex items-center rounded-xl bg-[#FAF7F2] p-0.5 border border-[#E5E0D5]">
+            <button
+              type="button"
+              onClick={() => handleSetMapMode('osm')}
+              className={`inline-flex items-center gap-1.5 rounded-lg px-2.5 sm:px-3 py-1 text-xs font-semibold transition-all duration-200 cursor-pointer active:scale-95 ${
+                mapMode === 'osm'
+                  ? 'bg-[#1B4332] text-white shadow-xs'
+                  : 'text-[#1B4332] hover:bg-[#1B4332]/10'
+              }`}
+              aria-pressed={mapMode === 'osm'}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="h-3.5 w-3.5"
+                aria-hidden="true"
+              >
+                <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6" />
+                <line x1="8" y1="2" x2="8" y2="18" />
+                <line x1="16" y1="6" x2="16" y2="22" />
+              </svg>
+              <span>Peta</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => handleSetMapMode('satellite')}
+              className={`inline-flex items-center gap-1.5 rounded-lg px-2.5 sm:px-3 py-1 text-xs font-semibold transition-all duration-200 cursor-pointer active:scale-95 ${
+                mapMode === 'satellite'
+                  ? 'bg-[#1B4332] text-white shadow-xs'
+                  : 'text-[#1B4332] hover:bg-[#1B4332]/10'
+              }`}
+              aria-pressed={mapMode === 'satellite'}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="h-3.5 w-3.5"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <line x1="2" y1="12" x2="22" y2="12" />
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+              </svg>
+              <span>Satelit</span>
+            </button>
+          </div>
+
+          {/* Pembatas halus 1 */}
+          <div className="hidden xs:block h-5 w-[1px] bg-[#C1C8C2]/70 mx-0.5" aria-hidden="true" />
+
+          {/* Segment 2: Toggle Sudut Pandang 2D / 3D */}
+          <div className="flex items-center rounded-xl bg-[#FAF7F2] p-0.5 border border-[#E5E0D5]">
+            <button
+              type="button"
+              onClick={() => handleToggle3D(false)}
+              className={`inline-flex items-center gap-1 rounded-lg px-2 sm:px-2.5 py-1 text-xs font-semibold transition-all duration-200 cursor-pointer active:scale-95 ${
+                !is3D
+                  ? 'bg-[#1B4332] text-white shadow-xs'
+                  : 'text-[#1B4332] hover:bg-[#1B4332]/10'
+              }`}
+              aria-pressed={!is3D}
+              title="Tampilan Datar 2D"
+            >
+              <span>2D</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => handleToggle3D(true)}
+              className={`inline-flex items-center gap-1.5 rounded-lg px-2 sm:px-2.5 py-1 text-xs font-semibold transition-all duration-200 cursor-pointer active:scale-95 ${
+                is3D
+                  ? 'bg-[#1B4332] text-white shadow-xs'
+                  : 'text-[#1B4332] hover:bg-[#1B4332]/10'
+              }`}
+              aria-pressed={is3D}
+              title="Tampilan Perspektif 3D"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="h-3 w-3"
+                aria-hidden="true"
+              >
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                <line x1="12" y1="22.08" x2="12" y2="12" />
+              </svg>
+              <span>3D</span>
+            </button>
+          </div>
+
+          {/* Pembatas halus 2 */}
+          <div className="hidden xs:block h-5 w-[1px] bg-[#C1C8C2]/70 mx-0.5" aria-hidden="true" />
+
+          {/* Segment 3: Tombol Pusatkan */}
           <button
             type="button"
-            onClick={() => handleSetMapMode('osm')}
-            className={`rounded-full px-2.5 sm:px-3 py-1 text-xs font-semibold transition-colors cursor-pointer ${
-              mapMode === 'osm'
-                ? 'bg-[#1B4332] text-white shadow-xs'
-                : 'text-[#1B4332] hover:bg-[#1B4332]/10'
-            }`}
-            aria-pressed={mapMode === 'osm'}
+            onClick={handleRecenter}
+            className="inline-flex items-center gap-1.5 rounded-xl px-2.5 sm:px-3 py-1.5 text-xs font-semibold text-[#1B4332] bg-[#FAF7F2] border border-[#E5E0D5] hover:bg-[#1B4332] hover:text-white hover:border-[#1B4332] transition-all duration-200 cursor-pointer active:scale-95 shadow-2xs"
+            title="Kembalikan posisi peta ke pusat kelurahan"
+            aria-label="Pusatkan peta ke Kelurahan Kumelembuay"
           >
-            Peta
-          </button>
-          <button
-            type="button"
-            onClick={() => handleSetMapMode('satellite')}
-            className={`rounded-full px-2.5 sm:px-3 py-1 text-xs font-semibold transition-colors cursor-pointer ${
-              mapMode === 'satellite'
-                ? 'bg-[#1B4332] text-white shadow-xs'
-                : 'text-[#1B4332] hover:bg-[#1B4332]/10'
-            }`}
-            aria-pressed={mapMode === 'satellite'}
-          >
-            Satelit
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-3.5 w-3.5"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="3" />
+              <path d="M12 2v3M12 19v3M2 12h3M19 12h3" />
+            </svg>
+            <span>Pusatkan</span>
           </button>
         </div>
-
-        {/* Toggle 2D / 3D */}
-        <div className="inline-flex rounded-full bg-white/95 p-0.5 sm:p-1 shadow-md border border-[#C1C8C2]/80 backdrop-blur-xs">
-          <button
-            type="button"
-            onClick={() => handleToggle3D(false)}
-            className={`rounded-full px-2.5 py-1 text-xs font-semibold transition-colors cursor-pointer ${
-              !is3D
-                ? 'bg-[#1B4332] text-white shadow-xs'
-                : 'text-[#1B4332] hover:bg-[#1B4332]/10'
-            }`}
-            aria-pressed={!is3D}
-          >
-            2D
-          </button>
-          <button
-            type="button"
-            onClick={() => handleToggle3D(true)}
-            className={`rounded-full px-2.5 py-1 text-xs font-semibold transition-colors cursor-pointer ${
-              is3D
-                ? 'bg-[#1B4332] text-white shadow-xs'
-                : 'text-[#1B4332] hover:bg-[#1B4332]/10'
-            }`}
-            aria-pressed={is3D}
-          >
-            3D
-          </button>
-        </div>
-
-        {/* Tombol Pusatkan */}
-        <button
-          type="button"
-          onClick={handleRecenter}
-          className="inline-flex items-center gap-1 rounded-full bg-white/95 px-2.5 sm:px-3 py-1 sm:py-1.5 text-xs font-semibold text-[#1B4332] shadow-md border border-[#C1C8C2]/80 transition-colors hover:bg-[#1B4332] hover:text-white backdrop-blur-xs cursor-pointer active:scale-95"
-          title="Kembalikan posisi peta ke pusat kelurahan"
-          aria-label="Pusatkan peta ke Kelurahan Kumelembuay"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="h-3.5 w-3.5"
-            aria-hidden="true"
-          >
-            <circle cx="12" cy="12" r="3" />
-            <path d="M12 2v3M12 19v3M2 12h3M19 12h3" />
-          </svg>
-          <span className="hidden xs:inline sm:inline">Pusatkan</span>
-        </button>
       </div>
 
       {/* Kontainer Kanvas Peta MapLibre */}

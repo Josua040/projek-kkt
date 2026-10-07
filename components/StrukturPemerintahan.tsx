@@ -13,11 +13,15 @@ function Avatar({
   nama,
   size = 'md',
   ringColor = 'ring-[#C1C8C2]',
+  fotoPosisi = 'center',
+  fotoTransform,
 }: {
   foto?: string;
   nama: string;
   size?: 'sm' | 'md' | 'lg';
   ringColor?: string;
+  fotoPosisi?: string;
+  fotoTransform?: string;
 }) {
   const sizeClasses = {
     sm: 'h-16 w-16 sm:h-20 sm:w-20',
@@ -36,6 +40,10 @@ function Avatar({
           fill
           sizes="120px"
           className="object-cover"
+          style={{
+            objectPosition: fotoPosisi,
+            transform: fotoTransform,
+          }}
         />
       ) : (
         <svg
@@ -145,6 +153,8 @@ export default function StrukturPemerintahan() {
                   nama={lurah.nama}
                   size="lg"
                   ringColor="ring-[#1B4332]/25"
+                  fotoPosisi={lurah.fotoPosisi}
+                  fotoTransform={lurah.fotoTransform}
                 />
 
                 <span className="mt-3 inline-flex items-center rounded-full bg-[#1B4332] px-4 py-1 text-xs font-bold uppercase tracking-wider text-white shadow-xs">
@@ -221,6 +231,8 @@ export default function StrukturPemerintahan() {
                   nama={sekretaris.nama}
                   size="md"
                   ringColor="ring-[#BC6C25]/25"
+                  fotoPosisi={sekretaris.fotoPosisi}
+                  fotoTransform={sekretaris.fotoTransform}
                 />
 
                 <span className="mt-3 inline-flex items-center rounded-full bg-[#BC6C25]/15 text-[#BC6C25] px-4 py-1 text-xs font-bold uppercase tracking-wider shadow-xs">
@@ -325,6 +337,8 @@ export default function StrukturPemerintahan() {
                             ? 'ring-[#2D6A4F]/20'
                             : 'ring-[#1B4332]/20'
                         }
+                        fotoPosisi={p.fotoPosisi}
+                        fotoTransform={p.fotoTransform}
                       />
 
                       <span
