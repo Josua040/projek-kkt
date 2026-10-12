@@ -25,7 +25,7 @@ export const timKkt = {
       ],
     },
     {
-      bidang: "Bidang Infokom",
+      bidang: "Bidang Kominfo",
       anggota: [
         { nama: "Miccella G. Korompis", nim: "230111040089", jabatan: "Koordinator", foto: "/images/tim-kkt/miccella.jpeg" },
         { nama: "Nesa Mokoalu", nim: "230311090019", jabatan: "Anggota", foto: "/images/tim-kkt/nesa.jpeg" },

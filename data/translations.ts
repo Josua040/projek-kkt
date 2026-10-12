@@ -7,7 +7,7 @@ export const translations = {
     profil: { id: 'Profil Kelurahan', en: 'Village Profile' },
     potensi: { id: 'Potensi Wisata', en: 'Tourism Potential' },
     kontak: { id: 'Kontak', en: 'Contact' },
-    tentang: { id: 'Tentang Kami', en: 'About Us' },
+    tentang: { id: 'KKT 149', en: 'KKT 149' },
     ariaMenu: { id: 'Buka menu navigasi', en: 'Open navigation menu' },
     ariaClose: { id: 'Tutup menu navigasi', en: 'Close navigation menu' },
   },
@@ -333,9 +333,9 @@ export const translations = {
     ],
   },
 
-  // ── Halaman Tentang Kami ────────────────────────────────────────────
+  // ── Halaman Tentang Kami (KKT 149) ───────────────────────────────────
   tentang: {
-    pageTitle: { id: 'Tentang Kami', en: 'About Us' },
+    pageTitle: { id: 'KKT 149', en: 'KKT 149' },
     subTitle: {
       id: 'Program Kerja KKT Unsrat · Kelurahan Kumelembuay',
       en: 'Unsrat KKT Work Program · Kumelembuay Village',
@@ -362,7 +362,8 @@ export const translations = {
     // Bidang names
     bidang: {
       'Inti Posko': { id: 'Inti Posko', en: 'Executive Core' },
-      'Bidang Infokom': { id: 'Bidang Infokom', en: 'Info & Communication Division' },
+      'Bidang Infokom': { id: 'Bidang Kominfo', en: 'Info & Communication Division' },
+      'Bidang Kominfo': { id: 'Bidang Kominfo', en: 'Info & Communication Division' },
       'Bidang Program': { id: 'Bidang Program', en: 'Programs & Field Division' },
       'Bidang Pelaporan': { id: 'Bidang Pelaporan', en: 'Reporting & Documentation Division' },
     },

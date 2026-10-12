@@ -70,16 +70,6 @@ export default function Navbar() {
               className="h-7 w-auto object-contain sm:h-9 transition-transform duration-200 group-hover:scale-105"
             />
           </div>
-
-          {/* Label Nama Kelurahan */}
-          <div className="flex flex-col justify-center min-w-0">
-            <span className="text-sm sm:text-base font-extrabold text-[#1B4332] leading-tight tracking-tight group-hover:text-[#BC6C25] transition-colors truncate">
-              {site.nama.replace(/^Kelurahan\s+/i, '')}
-            </span>
-            <span className="text-[10px] sm:text-xs font-semibold text-[#64748B] leading-none mt-0.5 tracking-wide truncate hidden xs:inline">
-              Kelurahan · {site.kecamatan}
-            </span>
-          </div>
         </Link>
 
         {/* Desktop menu + Language Switcher */}

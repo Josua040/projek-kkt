@@ -18,7 +18,7 @@ export default function TentangContent() {
         subtitle={t.subTitle[lang]}
         bgImage="/images/profil/hero.jpg"
         highlights={[
-          lang === 'id' ? 'KKT Angkatan 143' : 'Batch 143 Field Work',
+          lang === 'id' ? 'KKT Angkatan 149' : 'Batch 149 Field Work',
           lang === 'id' ? 'Universitas Sam Ratulangi' : 'Sam Ratulangi University',
           lang === 'id' ? 'Posko Kumelembuay' : 'Kumelembuay Base',
         ]}
