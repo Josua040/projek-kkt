@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import HeroAnimatedBackground from '@/components/HeroAnimatedBackground';
 import { site } from '@/data/site';
 import { useLanguage } from '@/context/LanguageContext';
 import { translations } from '@/data/translations';
@@ -94,25 +95,8 @@ export default function BerandaPage() {
           min-h-[460px] flex items-center
           px-4 pt-16 pb-24 sm:px-6 sm:min-h-[520px] sm:pt-20 sm:pb-28"
       >
-        {/* Foto latar */}
-        <Image
-          src="/images/profil/hero.jpg"
-          alt="Foto pemandangan Kelurahan Kumelembuay"
-          fill
-          priority
-          className="object-cover object-center"
-          sizes="100vw"
-        />
-        {/* Lapis 1: gelap merata ringan di seluruh hero */}
-        <div className="absolute inset-0 bg-[#1B4332]/25" />
-        {/* Lapis 2: gradien dari kiri (gelap) ke kanan (transparan) */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'linear-gradient(to right, rgba(27,67,50,0.97) 0%, rgba(27,67,50,0.85) 35%, rgba(27,67,50,0.40) 65%, transparent 100%)',
-          }}
-        />
+        {/* Animasi Latar Belakang Modern & Ringan */}
+        <HeroAnimatedBackground />
 
         {/* Konten teks — rata kiri, di atas overlay */}
         <div className="relative z-10 w-full max-w-6xl mx-auto">
