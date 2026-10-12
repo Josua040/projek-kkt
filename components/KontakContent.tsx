@@ -2,6 +2,7 @@
 
 import { site } from '@/data/site';
 import MapWrapper from '@/components/MapWrapper';
+import PageHeader from '@/components/PageHeader';
 import { useLanguage } from '@/context/LanguageContext';
 import { translations } from '@/data/translations';
 
@@ -75,19 +76,18 @@ export default function KontakContent() {
   return (
     <main className="overflow-x-hidden bg-[#FAF7F2]">
       {/* ── Page header ────────────────────────────────────────────────── */}
-      <div className="bg-[#1B4332] py-12 px-4 sm:px-6">
-        <div className="mx-auto max-w-6xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#A5D0B9] text-xs font-semibold mb-3 tracking-wide">
-            <span>{lang === 'id' ? 'Layanan & Lokasi' : 'Public Service & Location'}</span>
-          </div>
-          <h1 className="text-3xl font-extrabold text-white sm:text-4xl">
-            {t.pageTitle[lang]}
-          </h1>
-          <p className="mt-2 text-[#A5D0B9] text-sm sm:text-base">
-            {nama} · {kecamatan} · {kota}
-          </p>
-        </div>
-      </div>
+      <PageHeader
+        title={t.pageTitle[lang]}
+        badge={lang === 'id' ? 'Layanan & Lokasi Kantor' : 'Public Services & Office'}
+        subtitle={`${nama} · ${kecamatan} · ${kota}`}
+        bgImage="/images/profil/hero.jpg"
+        highlights={[
+          lang === 'id' ? 'Jam Pelayanan: 08:00 – 16:00' : 'Office Hours: 08:00 – 16:00',
+          lang === 'id' ? 'Peta Digital Interaktif' : 'Interactive Digital Map',
+          lang === 'id' ? '7 Titik Lingkungan' : '7 Neighborhood Markers',
+        ]}
+        maxWidth="6xl"
+      />
 
       <div className="mx-auto max-w-6xl py-12 px-4 sm:px-6 space-y-12">
         {/* ── BAGIAN 1: KARTU INFORMASI KONTAK (DI ATAS) ───────────────── */}

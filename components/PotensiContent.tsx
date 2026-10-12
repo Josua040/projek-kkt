@@ -6,6 +6,8 @@ import WisataGrid from '@/components/WisataGrid';
 import { useLanguage } from '@/context/LanguageContext';
 import { translations } from '@/data/translations';
 
+import PageHeader from '@/components/PageHeader';
+
 export default function PotensiContent() {
   const { lang } = useLanguage();
   const t = translations.potensi;
@@ -13,19 +15,18 @@ export default function PotensiContent() {
   return (
     <main className="overflow-x-hidden">
       {/* ── Page header ────────────────────────────────────────────────── */}
-      <div className="bg-[#1B4332] py-12 px-4 sm:px-6">
-        <div className="mx-auto max-w-6xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#A5D0B9] text-xs font-semibold mb-3 tracking-wide">
-            <span>{lang === 'id' ? 'Ekowisata & Budaya Minahasa' : 'Ecotourism & Minahasa Heritage'}</span>
-          </div>
-          <h1 className="text-3xl font-extrabold text-white sm:text-4xl">
-            {t.pageTitle[lang]}
-          </h1>
-          <p className="mt-2 text-[#A5D0B9] text-sm sm:text-base">
-            {site.nama} · {site.kecamatan} · {site.kota}
-          </p>
-        </div>
-      </div>
+      <PageHeader
+        title={t.pageTitle[lang]}
+        badge={lang === 'id' ? 'Ekowisata & Budaya Minahasa' : 'Ecotourism & Minahasa Heritage'}
+        subtitle={`${site.nama} · ${site.kecamatan} · ${site.kota}`}
+        bgImage="/images/wisata/tetetana-1.jpg"
+        highlights={[
+          lang === 'id' ? '3 Destinasi Wisata Unggulan' : '3 Featured Attractions',
+          lang === 'id' ? 'Panorama Dataran Tinggi' : 'Highland Mountain Panorama',
+          lang === 'id' ? 'Suasana Asri & Sejuk' : 'Fresh Mountain Breeze',
+        ]}
+        maxWidth="6xl"
+      />
 
       {/* ── Pengantar + Grid ───────────────────────────────────────────── */}
       <section className="bg-[#FAF7F2] py-12 px-4 sm:px-6">

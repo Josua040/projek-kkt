@@ -6,6 +6,8 @@ import StrukturPemerintahan from '@/components/StrukturPemerintahan';
 import { useLanguage } from '@/context/LanguageContext';
 import { translations } from '@/data/translations';
 
+import PageHeader from '@/components/PageHeader';
+
 type SectionBg = 'cream-light' | 'cream-dark';
 
 function sectionClass(bg: SectionBg): string {
@@ -35,16 +37,18 @@ export default function ProfilContent() {
   return (
     <main className="overflow-x-hidden">
       {/* ── Page header ────────────────────────────────────────────────── */}
-      <div className="bg-[#1B4332] py-12 px-4 sm:px-6">
-        <div className="mx-auto max-w-5xl">
-          <h1 className="text-3xl font-extrabold text-white sm:text-4xl">
-            {t.pageTitle[lang]}
-          </h1>
-          <p className="mt-2 text-[#A5D0B9] text-sm sm:text-base">
-            {site.nama} · {site.kecamatan} · {site.kota}
-          </p>
-        </div>
-      </div>
+      <PageHeader
+        title={t.pageTitle[lang]}
+        badge={lang === 'id' ? 'Pemerintahan & Sejarah' : 'Governance & History'}
+        subtitle={`${site.nama} · ${site.kecamatan} · ${site.kota}`}
+        bgImage="/images/profil/hero.jpg"
+        highlights={[
+          lang === 'id' ? 'Tahun Berdiri: 1912' : 'Established: 1912',
+          lang === 'id' ? 'Luas Wilayah: 330 Ha' : 'Area: 330 Ha',
+          lang === 'id' ? '7 Lingkungan' : '7 Neighborhoods',
+        ]}
+        maxWidth="5xl"
+      />
 
       {/* ── 1. Sejarah ─────────────────────────────────────────────────── */}
       <section className={`${sectionClass(bgs[0])} py-12 px-4 sm:px-6`}>

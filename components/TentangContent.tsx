@@ -1,6 +1,7 @@
 'use client';
 
 import TimKktSection from '@/components/TimKktSection';
+import PageHeader from '@/components/PageHeader';
 import { useLanguage } from '@/context/LanguageContext';
 import { translations } from '@/data/translations';
 
@@ -11,16 +12,18 @@ export default function TentangContent() {
   return (
     <main className="overflow-x-hidden">
       {/* ── Page header ────────────────────────────────────────────────── */}
-      <div className="bg-[#1B4332] py-12 px-4 sm:px-6">
-        <div className="mx-auto max-w-5xl">
-          <h1 className="text-3xl font-extrabold text-white sm:text-4xl">
-            {t.pageTitle[lang]}
-          </h1>
-          <p className="mt-2 text-[#A5D0B9] text-sm sm:text-base">
-            {t.subTitle[lang]}
-          </p>
-        </div>
-      </div>
+      <PageHeader
+        title={t.pageTitle[lang]}
+        badge={lang === 'id' ? 'Program Kerja KKT Unsrat' : 'Unsrat Field Work Program'}
+        subtitle={t.subTitle[lang]}
+        bgImage="/images/profil/hero.jpg"
+        highlights={[
+          lang === 'id' ? 'KKT Angkatan 143' : 'Batch 143 Field Work',
+          lang === 'id' ? 'Universitas Sam Ratulangi' : 'Sam Ratulangi University',
+          lang === 'id' ? 'Posko Kumelembuay' : 'Kumelembuay Base',
+        ]}
+        maxWidth="5xl"
+      />
 
       {/* ── Penjelasan Program KKT ─────────────────────────────────────── */}
       <section className="bg-[#FAF7F2] py-12 px-4 sm:px-6">
