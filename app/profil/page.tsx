@@ -4,7 +4,7 @@ import ProfilContent from '@/components/ProfilContent';
 
 export const metadata: Metadata = {
   title: `Profil Kelurahan — ${site.nama}`,
-  description: `Sejarah, visi misi, struktur pemerintahan, dan peta wilayah ${site.nama}, ${site.kecamatan}, ${site.kota}.`,
+  description: `Sejarah, visi misi, dan struktur pemerintahan ${site.nama}, ${site.kecamatan}, ${site.kota}.`,
 };
 
 export default function ProfilPage() {

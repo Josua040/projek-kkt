@@ -31,7 +31,6 @@ export default function ProfilContent() {
     'cream-dark',
     'cream-light',
     'cream-dark',
-    'cream-light',
   ];
 
   return (
@@ -145,41 +144,6 @@ export default function ProfilContent() {
       <section className={`${sectionClass(bgs[3])} py-12 px-4 sm:px-6`}>
         <div className="mx-auto max-w-5xl">
           <StrukturPemerintahan />
-        </div>
-      </section>
-
-      {/* ── 5. Peta Wilayah ────────────────────────────────────────────── */}
-      <section className={`${sectionClass(bgs[4])} py-12 px-4 sm:px-6`}>
-        <div className="mx-auto max-w-5xl">
-          <SectionTitle>{t.petaTitle[lang]}</SectionTitle>
-
-          {/* Placeholder gambar peta */}
-          <div className="rounded-2xl overflow-hidden border border-[#C1C8C2] shadow-sm">
-            <div className="relative w-full aspect-video bg-[#C1C8C2] flex flex-col items-center justify-center gap-3">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-12 w-12 text-[#8a9490]"
-                aria-hidden="true"
-              >
-                <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21" />
-                <line x1="9" y1="3" x2="9" y2="18" />
-                <line x1="15" y1="6" x2="15" y2="21" />
-              </svg>
-              <p className="text-[#414844] text-sm font-medium">
-                {t.petaPlaceholder[lang]}
-              </p>
-            </div>
-          </div>
-
-          <p className="mt-3 text-xs text-[#414844] text-center sm:text-sm">
-            {t.petaDesc[lang]}
-          </p>
         </div>
       </section>
     </main>
