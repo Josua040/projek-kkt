@@ -32,8 +32,6 @@ function toLngLat(coord: [number, number]): [number, number] {
 export default function VillageMap({
   center = site.koordinat,
   zoom = 14,
-  villageName = 'Kumelembuay',
-  subtitle = 'Kecamatan Tomohon Timur, Kota Tomohon',
 }: VillageMapProps) {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
@@ -43,6 +41,18 @@ export default function VillageMap({
 
   // Memoize koordinat agar referensi array tidak berubah di setiap render
   const [lng, lat] = useMemo(() => toLngLat(center), [center]);
+
+  // Gugusan koordinat 7 lingkungan untuk inisialisasi fitBounds & tombol Pusatkan
+  const clusterBounds = useMemo(() => {
+    const bounds = new maplibregl.LngLatBounds();
+    lingkungan.forEach((l) => {
+      if (l.koordinat && l.koordinat.length >= 2) {
+        // MapLibre menggunakan format [lng, lat], data/pemerintahan.ts menggunakan [lat, lng]
+        bounds.extend([l.koordinat[1], l.koordinat[0]]);
+      }
+    });
+    return bounds;
+  }, []);
 
   useEffect(() => {
     if (!mapContainerRef.current) return;
@@ -99,6 +109,11 @@ export default function VillageMap({
       style: styleSpec,
       center: [lng, lat],
       zoom: zoom,
+      bounds: !clusterBounds.isEmpty() ? clusterBounds : undefined,
+      fitBoundsOptions: {
+        padding: 60,
+        maxZoom: 17,
+      },
       pitch: 0,
       bearing: 0,
       // cooperativeGestures: scroll halaman dengan 1 jari di HP tidak terkunci
@@ -141,67 +156,65 @@ export default function VillageMap({
         },
       });
 
-      // ── 2. Marker Pin Utama Pusat Kelurahan ──────────────────────────
-      const centerPin = document.createElement('div');
-      centerPin.className = 'cursor-pointer select-none';
-      centerPin.innerHTML = `
-        <svg width="34" height="46" viewBox="0 0 36 48" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 3px 6px rgba(0,0,0,0.3));">
-          <path d="M18 0C8 0 0 8 0 18c0 13.5 18 30 18 30s18-16.5 18-30C36 8 28 0 18 0z" fill="#BC6C25" stroke="#1B4332" stroke-width="1.5"/>
-          <circle cx="18" cy="18" r="7" fill="#FAF7F2"/>
-        </svg>
-      `;
+      // Tampilan awal: fitBounds ke gugusan 7 titik lingkungan (padding 60px, maxZoom 17)
+      if (!clusterBounds.isEmpty()) {
+        map.fitBounds(clusterBounds, {
+          padding: 60,
+          maxZoom: 17,
+          duration: 0,
+        });
+      }
 
-      const centerPopup = new maplibregl.Popup({
-        offset: [0, -36],
-        closeButton: false,
-      }).setHTML(`
-        <div style="font-family: inherit; padding: 4px 6px; text-align: center;">
-          <strong style="color: #1B4332; font-size: 13px; font-weight: 700; display: block;">${villageName}</strong>
-          <span style="color: #414844; font-size: 11px; line-height: 1.3; display: block; margin-top: 2px;">${subtitle}</span>
-        </div>
-      `);
+      // ── 2. Marker 7 Lingkungan (lingkaran ~28px dengan label Romawi I-VII) ──
+      const ROMAN_NUMERALS = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII'];
 
-      new maplibregl.Marker({ element: centerPin, anchor: 'bottom' })
-        .setLngLat([lng, lat])
-        .setPopup(centerPopup)
-        .addTo(map);
-
-      // ── 3. Marker Bernomor untuk Lingkungan (jika koordinat terisi) ──
       lingkungan.forEach((l, idx) => {
-        if (!l.koordinat) return; // Lewati lingkungan tanpa koordinat
+        if (!l.koordinat || l.koordinat.length < 2) return; // Lewati jika tanpa koordinat
+
+        const romanMatch = l.nama.match(/\b([IVXLCDM]+)$/i);
+        const romanLabel = romanMatch
+          ? romanMatch[1].toUpperCase()
+          : (ROMAN_NUMERALS[idx] ?? `${idx + 1}`);
 
         const markerEl = document.createElement('div');
         markerEl.className =
           'cursor-pointer select-none flex items-center justify-center font-bold text-white shadow-md transition-transform hover:scale-110';
-        markerEl.style.width = '26px';
-        markerEl.style.height = '26px';
+        markerEl.style.width = '28px';
+        markerEl.style.height = '28px';
         markerEl.style.borderRadius = '50%';
         markerEl.style.backgroundColor = '#1B4332';
-        markerEl.style.border = '2px solid #FAF7F2';
-        markerEl.style.fontSize = '12px';
+        markerEl.style.color = '#FFFFFF';
+        markerEl.style.border = '1.5px solid #FFFFFF';
+        markerEl.style.boxShadow = '0 2px 6px rgba(0, 0, 0, 0.35)';
+        markerEl.style.fontSize = romanLabel.length >= 3 ? '10px' : '11px';
+        markerEl.style.letterSpacing = romanLabel.length >= 3 ? '-0.5px' : 'normal';
         markerEl.style.lineHeight = '1';
-        markerEl.textContent = `${idx + 1}`;
+        markerEl.setAttribute('role', 'button');
+        markerEl.setAttribute('aria-label', `${l.nama}: Kepala ${l.kepala}, Wakil ${l.wakil}`);
+        markerEl.textContent = romanLabel;
 
         const popup = new maplibregl.Popup({
-          offset: [0, -14],
+          offset: [0, -16],
           closeButton: true,
+          closeOnClick: true,
+          maxWidth: '260px',
         }).setHTML(`
-          <div style="font-family: inherit; padding: 4px 2px; min-width: 150px;">
-            <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 6px; border-bottom: 1px solid #E5E7EB; padding-bottom: 4px;">
-              <span style="background-color: #1B4332; color: white; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold;">${idx + 1}</span>
-              <strong style="color: #1B4332; font-size: 13px;">${l.nama}</strong>
+          <div style="font-family: inherit; padding: 4px 2px; color: #1C1C18;">
+            <strong style="display: block; font-size: 13px; font-weight: 700; color: #1B4332; line-height: 1.3; margin-bottom: 5px; padding-bottom: 4px; border-bottom: 1px solid #E5E7EB;">${l.nama}</strong>
+            <div style="font-size: 12px; line-height: 1.4; margin-bottom: 2px;">
+              <span style="color: #414844; font-weight: 600;">Kepala:</span> <span style="font-weight: 500;">${l.kepala}</span>
             </div>
-            <p style="margin: 0; font-size: 11px; color: #1C1C18; line-height: 1.4;">
-              <span style="color: #64748B; font-weight: 600;">Kepala:</span> <strong>${l.kepala}</strong>
-            </p>
-            <p style="margin: 3px 0 0; font-size: 11px; color: #1C1C18; line-height: 1.4;">
-              <span style="color: #64748B; font-weight: 600;">Wakil:</span> ${l.wakil}
-            </p>
+            <div style="font-size: 12px; line-height: 1.4;">
+              <span style="color: #414844; font-weight: 600;">Wakil:</span> <span style="font-weight: 500;">${l.wakil}</span>
+            </div>
           </div>
         `);
 
+        // Urutan koordinat di data/pemerintahan.ts [lat, lng] dibalik ke [lng, lat]
+        const markerLngLat: [number, number] = [l.koordinat[1], l.koordinat[0]];
+
         new maplibregl.Marker({ element: markerEl, anchor: 'center' })
-          .setLngLat(toLngLat(l.koordinat))
+          .setLngLat(markerLngLat)
           .setPopup(popup)
           .addTo(map);
       });
@@ -212,7 +225,7 @@ export default function VillageMap({
     return () => {
       map.remove();
     };
-  }, [lng, lat, zoom, villageName, subtitle]);
+  }, [lng, lat, zoom, clusterBounds]);
 
   // Handler pergantian mode Peta / Satelit yang aman dari error "Style is not done loading"
   const handleSetMapMode = (mode: 'osm' | 'satellite') => {
@@ -261,19 +274,30 @@ export default function VillageMap({
     });
   };
 
-  // Handler tombol Pusatkan ke center & zoom awal
+  // Handler tombol Pusatkan mengembalikan ke gugusan 7 titik lingkungan
   const handleRecenter = () => {
     const map = mapRef.current;
     if (!map) return;
 
-    map.flyTo({
-      center: [lng, lat],
-      zoom: zoom,
-      pitch: is3D ? 60 : 0,
-      bearing: is3D ? -20 : 0,
-      essential: true,
-      duration: 1000,
-    });
+    if (!clusterBounds.isEmpty()) {
+      map.fitBounds(clusterBounds, {
+        padding: 60,
+        maxZoom: 17,
+        pitch: is3D ? 60 : 0,
+        bearing: is3D ? -20 : 0,
+        essential: true,
+        duration: 1000,
+      });
+    } else {
+      map.flyTo({
+        center: [lng, lat],
+        zoom: zoom,
+        pitch: is3D ? 60 : 0,
+        bearing: is3D ? -20 : 0,
+        essential: true,
+        duration: 1000,
+      });
+    }
   };
 
   return (

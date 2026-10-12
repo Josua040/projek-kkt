@@ -251,6 +251,10 @@ export const translations = {
     btnCollapse: { id: 'Sembunyikan Rincian', en: 'Hide Details' },
     btnMaps: { id: 'Buka di Google Maps', en: 'Open in Google Maps' },
     highlightTitle: { id: 'Daya Tarik & Karakter Wisata', en: 'Key Highlights & Features' },
+    galeriTitle: { id: 'Galeri Foto Destinasi (3 Foto)', en: 'Destination Photo Gallery (3 Photos)' },
+    galeriSubtitle: { id: 'Klik salah satu foto untuk melihat tampilan penuh', en: 'Click any photo to open full resolution' },
+    fotoCountBadge: { id: '3 Foto Tersedia', en: '3 Photos Available' },
+    lightboxClose: { id: 'Tutup Foto', en: 'Close Photo' },
     btnPrev: { id: 'Sebelumnya', en: 'Previous' },
     btnNext: { id: 'Berikutnya', en: 'Next' },
     lokasiLabel: { id: 'Lokasi Destinasi', en: 'Destination Location' },
@@ -265,6 +269,11 @@ export const translations = {
           { id: 'Panorama Gunung Klabat', en: 'Mount Klabat Panorama' },
           { id: 'Momen Sunset Emas', en: 'Golden Hour Sunset' },
           { id: 'Taman Bunga Terbuka', en: 'Open Flower Garden' },
+        ],
+        galeriCaptions: [
+          { id: 'Pemandangan Puncak & Kunjungan Tim KKT', en: 'Summit Panorama & KKT Team Visit' },
+          { id: 'Panorama Puncak Tetetana & Pohon Ikonik', en: 'Tetetana Ridge Panorama & Iconic Tree' },
+          { id: 'Area Pendopo Terbuka & Lanskap Puncak', en: 'Open Pavilion Area & Summit Horizon' },
         ],
         deskripsiSingkat: {
           id: 'Panorama dari ketinggian dengan pemandangan Gunung Klabat dan momen matahari terbenam.',
@@ -284,6 +293,11 @@ export const translations = {
           { id: 'Udara Pegunungan Sejuk', en: 'Crisp Mountain Breeze' },
           { id: 'Spot Fotografi Lanskap', en: 'Scenic Photo Vantage' },
         ],
+        galeriCaptions: [
+          { id: "Panorama Melby'Ls & Bangunan Kapal Ikonik", en: "Melby'Ls Hilltop & Iconic Ship Vantage" },
+          { id: "Pondok Melby'Ls Hill Resort & Taman Bunga", en: "Melby'Ls Hill Resort & Flower Terrace" },
+          { id: "Gazebo & Taman Bebatuan Perbukitan", en: "Hillside Gazebos & Stone Terraces" },
+        ],
         deskripsiSingkat: {
           id: 'Panorama perbukitan dengan suasana terbuka, udara sejuk, dan spot foto lanskap.',
           en: 'Rolling highland hills, crisp mountain air, open vistas, and picturesque photo spots.',
@@ -301,6 +315,11 @@ export const translations = {
           { id: 'Kawasan Hutan Aren', en: 'Sugar Palm Forest' },
           { id: 'Pembuatan Cap Tikus & Saguer', en: 'Artisanal Saguer & Cap Tikus' },
           { id: 'Arsitektur Kayu-Bambu Alami', en: 'Rustic Wood & Bamboo Setting' },
+        ],
+        galeriCaptions: [
+          { id: "Kawasan Wisata Tuur Ma'asering & Kolintang", en: "Tuur Ma'asering Compound & Kolintang" },
+          { id: "Pondok Segitiga Ijuk & Hutan Pohon Aren", en: "Thatched Triangle Hut & Sugar Palm Forest" },
+          { id: "Pondok Tradisional Penyulingan Cap Tikus", en: "Traditional Cap Tikus Distillation Hut" },
         ],
         deskripsiSingkat: {
           id: 'Wisata budaya aren: pengolahan air nira menjadi saguer dan Cap Tikus di tengah pondok kayu-bambu.',

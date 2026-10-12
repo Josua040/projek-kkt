@@ -11,7 +11,7 @@ export type Lingkungan = {
   nama: string;
   kepala: string;
   wakil: string;
-  koordinat?: [number, number];
+  koordinat?: [number, number]; // [lat, lng] WGS84, dari data PWK
 };
 
 export const pejabatInti: PejabatInti[] = [
@@ -41,11 +41,11 @@ export const pejabatInti: PejabatInti[] = [
 ];
 
 export const lingkungan: Lingkungan[] = [
-  { nama: "Lingkungan I", kepala: "Wilhelmus Kapoh", wakil: "Ferdi Pangemanan", koordinat: undefined }, // TODO: koordinat dari PWK/Lurah
-  { nama: "Lingkungan II", kepala: "Adri Solang", wakil: "Agus Pitoy", koordinat: undefined }, // TODO: koordinat dari PWK/Lurah
-  { nama: "Lingkungan III", kepala: "Lexi Maxi Runtuwalian", wakil: "Yan Frits Moningka", koordinat: undefined }, // TODO: koordinat dari PWK/Lurah
-  { nama: "Lingkungan IV", kepala: "Yoseph Pangemanan", wakil: "Junita Terok", koordinat: undefined }, // TODO: koordinat dari PWK/Lurah
-  { nama: "Lingkungan V", kepala: "Bennie Ponto", wakil: "Josep Aror", koordinat: undefined }, // TODO: koordinat dari PWK/Lurah
-  { nama: "Lingkungan VI", kepala: "Elsye Ratag", wakil: "Mykhael Muhonis", koordinat: undefined }, // TODO: koordinat dari PWK/Lurah
-  { nama: "Lingkungan VII", kepala: "Jeanne Mokoagouw", wakil: "Fence Victor Pitoy", koordinat: undefined }, // TODO: koordinat dari PWK/Lurah
+  { nama: "Lingkungan I", kepala: "Wilhelmus Kapoh", wakil: "Ferdi Pangemanan", koordinat: [1.349042, 124.888745] },
+  { nama: "Lingkungan II", kepala: "Adri Solang", wakil: "Agus Pitoy", koordinat: [1.349124, 124.887743] },
+  { nama: "Lingkungan III", kepala: "Lexi Maxi Runtuwalian", wakil: "Yan Frits Moningka", koordinat: [1.349727, 124.886785] },
+  { nama: "Lingkungan IV", kepala: "Yoseph Pangemanan", wakil: "Junita Terok", koordinat: [1.348261, 124.886823] },
+  { nama: "Lingkungan V", kepala: "Bennie Ponto", wakil: "Josep Aror", koordinat: [1.350522, 124.885522] },
+  { nama: "Lingkungan VI", kepala: "Elsye Ratag", wakil: "Mykhael Muhonis", koordinat: [1.349112, 124.885725] },
+  { nama: "Lingkungan VII", kepala: "Jeanne Mokoagouw", wakil: "Fence Victor Pitoy", koordinat: [1.351567, 124.885744] },
 ];

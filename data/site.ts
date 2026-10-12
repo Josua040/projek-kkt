@@ -59,5 +59,5 @@ export const site = {
   },
 
   jamKantor: "Senin – Jumat (08.00 – 16.00)",
-  koordinat: [1.348987, 124.885827] as [number, number],
+  koordinat: [1.349622, 124.886727] as [number, number], // pusat 7 lingkungan, dari data PWK
 };
