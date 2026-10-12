@@ -6,6 +6,82 @@ import { site } from '@/data/site';
 import { useLanguage } from '@/context/LanguageContext';
 import { translations } from '@/data/translations';
 
+const JELAJAH_META = [
+  {
+    badge: { id: 'Pemerintahan', en: 'Governance' },
+    action: { id: 'Pelajari Profil', en: 'Explore Profile' },
+    iconBg: 'bg-[#1B4332]/10 text-[#1B4332] group-hover:bg-[#1B4332] group-hover:text-white',
+    accentColor: 'bg-[#1B4332]',
+    badgeStyle: 'bg-[#1B4332]/10 text-[#1B4332]',
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="h-5 w-5 sm:h-6 sm:w-6"
+        aria-hidden="true"
+      >
+        <path d="M3 21h18" />
+        <path d="M4 18V9" />
+        <path d="M20 18V9" />
+        <path d="M12 2 3 7v2h18V7z" />
+        <path d="M9 12v6" />
+        <path d="M15 12v6" />
+      </svg>
+    ),
+  },
+  {
+    badge: { id: 'Destinasi Wisata', en: 'Tourism Destination' },
+    action: { id: 'Lihat Wisata', en: 'View Attractions' },
+    iconBg: 'bg-[#BC6C25]/10 text-[#BC6C25] group-hover:bg-[#BC6C25] group-hover:text-white',
+    accentColor: 'bg-[#BC6C25]',
+    badgeStyle: 'bg-[#BC6C25]/12 text-[#BC6C25]',
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="h-5 w-5 sm:h-6 sm:w-6"
+        aria-hidden="true"
+      >
+        <path d="m8 3 4 8 5-5 5 15H2L8 3z" />
+        <circle cx="18" cy="7" r="2.5" />
+      </svg>
+    ),
+  },
+  {
+    badge: { id: 'Layanan & Peta', en: 'Services & Map' },
+    action: { id: 'Buka Kontak & Peta', en: 'Open Contact & Map' },
+    iconBg: 'bg-[#D4A373]/20 text-[#965727] group-hover:bg-[#1B4332] group-hover:text-white',
+    accentColor: 'bg-[#BC6C25]',
+    badgeStyle: 'bg-[#D4A373]/25 text-[#965727]',
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="h-5 w-5 sm:h-6 sm:w-6"
+        aria-hidden="true"
+      >
+        <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+        <circle cx="12" cy="10" r="3" />
+      </svg>
+    ),
+  },
+];
+
 export default function BerandaPage() {
   const { lang } = useLanguage();
   const t = translations.beranda;
@@ -190,23 +266,99 @@ export default function BerandaPage() {
       </section>
 
       {/* Kartu jelajah */}
-      <section className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
-        <h2 className="mb-6 text-2xl font-bold text-[#1B4332]">
-          {t.jelajahTitle[lang]}
-        </h2>
-        <div className="grid gap-6 sm:grid-cols-3">
-          {t.jelajahCards.map((h) => (
-            <Link
-              key={h.href}
-              href={h.href}
-              className="rounded-2xl border border-[#c1c8c2] bg-white p-6 shadow-sm transition hover:shadow-md"
-            >
-              <h3 className="mb-2 text-lg font-bold text-[#1B4332]">
-                {h.title[lang]}
-              </h3>
-              <p className="text-sm text-[#414844]">{h.desc[lang]}</p>
-            </Link>
-          ))}
+      <section className="mx-auto max-w-5xl px-4 py-10 sm:py-14 sm:px-6">
+        <div className="mb-6 sm:mb-8">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider text-[#BC6C25] bg-[#BC6C25]/10 border border-[#BC6C25]/20">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#BC6C25]" aria-hidden="true" />
+            {lang === 'id' ? 'Navigasi Cepat' : 'Quick Navigation'}
+          </span>
+          <h2 className="mt-2 text-2xl sm:text-3xl font-extrabold text-[#1B4332] tracking-tight">
+            {t.jelajahTitle[lang]}
+          </h2>
+          <p className="mt-1.5 text-sm text-[#414844] max-w-xl">
+            {lang === 'id'
+              ? 'Temukan informasi profil kelurahan, pesona destinasi wisata, serta layanan dan kontak resmi.'
+              : 'Discover village profile information, scenic tourist attractions, and official contact services.'}
+          </p>
+        </div>
+
+        <div className="grid gap-4 sm:gap-6 sm:grid-cols-3">
+          {t.jelajahCards.map((h, idx) => {
+            const meta = JELAJAH_META[idx] ?? JELAJAH_META[0];
+            return (
+              <Link
+                key={h.href}
+                href={h.href}
+                className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-[#C1C8C2]/70 bg-white p-5 sm:p-6 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-[#BC6C25]/50 hover:shadow-lg"
+              >
+                {/* Garis aksen halus di atas saat hover */}
+                <div
+                  className={`absolute top-0 left-0 right-0 h-1 transition-all duration-300 opacity-0 group-hover:opacity-100 ${meta.accentColor}`}
+                  aria-hidden="true"
+                />
+
+                <div>
+                  {/* Baris Atas: Ikon + Tombol Panah Lingkaran */}
+                  <div className="flex items-center justify-between gap-3">
+                    <div
+                      className={`flex h-11 w-11 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-xl transition-all duration-300 ${meta.iconBg}`}
+                    >
+                      {meta.icon}
+                    </div>
+
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#FAF7F2] text-[#414844] transition-all duration-300 group-hover:bg-[#1B4332] group-hover:text-white">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5"
+                        aria-hidden="true"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M5 10a.75.75 0 0 1 .75-.75h6.638L9.205 6.068a.75.75 0 1 1 1.09-1.036l4.25 4.5a.75.75 0 0 1 0 1.036l-4.25 4.5a.75.75 0 1 1-1.09-1.036L12.388 10.75H5.75A.75.75 0 0 1 5 10Z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+
+                  {/* Isi Kartu */}
+                  <div className="mt-4">
+                    <span
+                      className={`inline-block text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md ${meta.badgeStyle}`}
+                    >
+                      {meta.badge[lang]}
+                    </span>
+                    <h3 className="mt-2 text-lg font-bold text-[#1B4332] transition-colors duration-200 group-hover:text-[#BC6C25]">
+                      {h.title[lang]}
+                    </h3>
+                    <p className="mt-1.5 text-sm leading-relaxed text-[#414844]">
+                      {h.desc[lang]}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Baris Bawah: Teks Aksi dengan Panah */}
+                <div className="mt-5 flex items-center justify-between border-t border-[#F3EFE6] pt-3.5 text-xs font-bold text-[#1B4332] transition-colors duration-200 group-hover:text-[#BC6C25]">
+                  <span>{meta.action[lang]}</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-1"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 6.068a.75.75 0 1 1 1.09-1.036l4.25 4.5a.75.75 0 0 1 0 1.036l-4.25 4.5a.75.75 0 1 1-1.09-1.036L14.388 10.75H3.75A.75.75 0 0 1 3 10Z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </section>
 
